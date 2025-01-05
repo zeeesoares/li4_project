@@ -1,0 +1,27 @@
+﻿@page "/navAdmin"
+
+@using Microsoft.AspNetCore.Components.Forms
+@using System.Threading.Tasks
+@using Microsoft.AspNetCore.Components
+
+<div class="mx-auto flex max-w-7xl items-center justify-between border-b-2 border-black pb-2">
+    <div class="flex">
+        <a href="/" class="flex items-center">
+            <img class="h-20 w-auto" src="assets/logo.png" alt="Logo">
+        </a>
+    </div>
+
+    <div class="flex gap-x-28">
+        <NavLink href="/catalogo" ActiveClass="active-link" Match="NavLinkMatch.All" class="hover:underline font-bold font-sans">Catálogo</NavLink>
+        <NavLink href="/linha-montagem" ActiveClass="active-link" Match="NavLinkMatch.All" class="hover:underline font-bold font-sans">Linha de Montagem</NavLink>
+        <NavLink href="/stock" ActiveClass="active-link" Match="NavLinkMatch.All" class="hover:underline font-bold font-sans">Stock</NavLink>
+    </div>
+
+    <div class="flex items-center space-x-10">
+        <img class="h-10 w-10 rounded-full" src="assets/user-avatar.png" alt="Avatar do usuário">
+        <div class="flex flex-col">
+            <p class="text-black font-bold font-sans text-xs">João Martins</p>
+            <p class="cursor-pointer hover:underline text-black font-bold font-sans text-xs">Sair</p>
+        </div>
+    </div>
+</div>

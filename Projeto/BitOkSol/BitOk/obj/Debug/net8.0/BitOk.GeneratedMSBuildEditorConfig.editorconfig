@@ -28,6 +28,14 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Pages/NavAdmin.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTmF2QWRtaW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Pages/NavCliente.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTmF2Q2xpZW50ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Pages/Registo.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0by5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
