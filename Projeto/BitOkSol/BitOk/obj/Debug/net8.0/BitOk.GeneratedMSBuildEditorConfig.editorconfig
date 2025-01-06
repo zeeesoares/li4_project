@@ -24,6 +24,18 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Pages/AcompanharEncomenda.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNvbXBhbmhhckVuY29tZW5kYS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Pages/AcompanharProduto.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNvbXBhbmhhclByb2R1dG8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Pages/EncMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW5jTWVudS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 

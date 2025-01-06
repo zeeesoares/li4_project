@@ -1,0 +1,40 @@
+﻿@page "/encMenu"
+
+<div class="bg-gray-200 rounded-lg p-4 flex justify-between items-center max-w-5xl mx-auto">
+    <div>
+        <p class="text-base font-bold text-black">Encomenda #@OrderNumber</p>
+        <div class="flex items-center gap-2 mt-2">
+            <span class="w-4 h-4 rounded-full" style="background-color: @GetStatusColor()"></span>
+            <span class="text-base font-bold text-black">- @Status</span>
+        </div>
+        <p class="mt-2 text-base font-bold text-black">Iniciada em: @StartDate</p>
+    </div>
+    <div class="flex items-center gap-4">
+        @if (Status == "Espera")
+        {
+            <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+                Cancelar Encomenda
+            </button>
+        }
+        <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+            Acompanhar Encomenda
+        </button>
+    </div>
+</div>
+
+@code {
+    [Parameter] public int OrderNumber { get; set; } = 1; // Meter valores corretos de cada encomenda
+    [Parameter] public string Status { get; set; } = "Espera"; 
+    [Parameter] public string StartDate { get; set; } = "01/01/2025"; 
+
+    private string GetStatusColor()
+    {
+        return Status switch
+        {
+            "Completa" => "green",
+            "Preparação" => "yellow",
+            "Espera" => "red",
+            _ => "blue" 
+        };
+    }
+}

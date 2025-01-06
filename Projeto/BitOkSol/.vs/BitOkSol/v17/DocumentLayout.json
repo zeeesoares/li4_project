@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{73C5023B-9650-405D-BEE5-59CC72CB5957}|BitOk\\BitOk.csproj|d:\\universidade\\li4\\projeto\\bitoksol\\bitok\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{73C5023B-9650-405D-BEE5-59CC72CB5957}|BitOk\\BitOk.csproj|solutionrelative:bitok\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{73C5023B-9650-405D-BEE5-59CC72CB5957}|BitOk\\BitOk.csproj|d:\\universidade\\li4\\projeto\\bitoksol\\bitok\\pages\\acompanharproduto.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{73C5023B-9650-405D-BEE5-59CC72CB5957}|BitOk\\BitOk.csproj|solutionrelative:bitok\\pages\\acompanharproduto.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{73C5023B-9650-405D-BEE5-59CC72CB5957}|BitOk\\BitOk.csproj|d:\\universidade\\li4\\projeto\\bitoksol\\bitok\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{73C5023B-9650-405D-BEE5-59CC72CB5957}|BitOk\\BitOk.csproj|solutionrelative:bitok\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{73C5023B-9650-405D-BEE5-59CC72CB5957}|BitOk\\BitOk.csproj|d:\\universidade\\li4\\projeto\\bitoksol\\bitok\\pages\\encmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{73C5023B-9650-405D-BEE5-59CC72CB5957}|BitOk\\BitOk.csproj|solutionrelative:bitok\\pages\\encmenu.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{73C5023B-9650-405D-BEE5-59CC72CB5957}|BitOk\\BitOk.csproj|d:\\universidade\\li4\\projeto\\bitoksol\\bitok\\pages\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{73C5023B-9650-405D-BEE5-59CC72CB5957}|BitOk\\BitOk.csproj|solutionrelative:bitok\\pages\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{73C5023B-9650-405D-BEE5-59CC72CB5957}|BitOk\\BitOk.csproj|d:\\universidade\\li4\\projeto\\bitoksol\\bitok\\pages\\navadmin.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{73C5023B-9650-405D-BEE5-59CC72CB5957}|BitOk\\BitOk.csproj|solutionrelative:bitok\\pages\\navadmin.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{73C5023B-9650-405D-BEE5-59CC72CB5957}|BitOk\\BitOk.csproj|d:\\universidade\\li4\\projeto\\bitoksol\\bitok\\pages\\_host.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{73C5023B-9650-405D-BEE5-59CC72CB5957}|BitOk\\BitOk.csproj|solutionrelative:bitok\\pages\\_host.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,52 +27,41 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "App.razor",
-              "DocumentMoniker": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\App.razor",
-              "RelativeDocumentMoniker": "BitOk\\App.razor",
-              "ToolTip": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\App.razor",
-              "RelativeToolTip": "BitOk\\App.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAPAAAAAAAAAA==",
+              "Title": "EncMenu.razor",
+              "DocumentMoniker": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\Pages\\EncMenu.razor",
+              "RelativeDocumentMoniker": "BitOk\\Pages\\EncMenu.razor",
+              "ToolTip": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\Pages\\EncMenu.razor",
+              "RelativeToolTip": "BitOk\\Pages\\EncMenu.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAABYAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-05T17:13:02.919Z",
+              "WhenOpened": "2025-01-06T17:48:08.825Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "_Imports.razor",
-              "DocumentMoniker": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\_Imports.razor",
-              "RelativeDocumentMoniker": "BitOk\\_Imports.razor",
-              "ToolTip": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\_Imports.razor",
-              "RelativeToolTip": "BitOk\\_Imports.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "AcompanharProduto.razor",
+              "DocumentMoniker": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\Pages\\AcompanharProduto.razor",
+              "RelativeDocumentMoniker": "BitOk\\Pages\\AcompanharProduto.razor",
+              "ToolTip": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\Pages\\AcompanharProduto.razor",
+              "RelativeToolTip": "BitOk\\Pages\\AcompanharProduto.razor",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAACAAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-05T17:13:01.493Z",
+              "WhenOpened": "2025-01-06T17:32:56.46Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\Pages\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "BitOk\\Pages\\_Layout.cshtml",
-              "ToolTip": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\Pages\\_Layout.cshtml",
-              "RelativeToolTip": "BitOk\\Pages\\_Layout.cshtml",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAAACIAAAAiAAAAAAAAAA==",
+              "Title": "_Host.cshtml",
+              "DocumentMoniker": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\Pages\\_Host.cshtml",
+              "RelativeDocumentMoniker": "BitOk\\Pages\\_Host.cshtml",
+              "ToolTip": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\Pages\\_Host.cshtml",
+              "RelativeToolTip": "BitOk\\Pages\\_Host.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABQAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-05T17:11:31.246Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "NavAdmin.razor",
-              "DocumentMoniker": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\Pages\\NavAdmin.razor",
-              "RelativeDocumentMoniker": "BitOk\\Pages\\NavAdmin.razor",
-              "ToolTip": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\Pages\\NavAdmin.razor",
-              "RelativeToolTip": "BitOk\\Pages\\NavAdmin.razor",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-01-05T17:07:39.383Z"
+              "WhenOpened": "2025-01-06T17:17:31.587Z",
+              "EditorCaption": ""
             }
           ]
         }

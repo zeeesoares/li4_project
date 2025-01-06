@@ -1,0 +1,80 @@
+﻿@page "/acompanhamentoEncomenda"
+
+<div class="bg-gray-200 rounded-lg p-4 flex flex-col gap-4 max-w-5xl mx-auto">
+    <div>
+        <p class="text-base font-bold text-black">Encomenda #@OrderNumber</p>
+        <div class="flex items-center gap-2 mt-2">
+            <span class="w-4 h-4 rounded-full" style="background-color: @GetStatusColor(Status)"></span>
+            <span class="text-base font-bold text-black">- @Status</span>
+        </div>
+        <p class="mt-2 text-base font-bold text-black">Iniciada em: @StartDate</p>
+    </div>
+
+    <div class="flex flex-col gap-4">
+        @foreach (var product in Products)
+        {
+            <div class="bg-gray-300 rounded-lg p-4 flex justify-between items-center">
+                <div>
+                    <p class="text-base font-bold text-black">@product.Name</p>
+                    <p class="text-sm text-base font-bold text-black">@product.Description</p>
+                    <div class="flex items-center gap-2 mt-2">
+                        <span class="w-4 h-4 rounded-full" style="background-color: @GetStatusColor(product.Status)"></span>
+                        <span class="text-base font-bold text-black">- @product.Status</span>
+                    </div>
+                </div>
+                <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+                    Visualizar Montagem de Produto
+                </button>
+            </div>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter] public int OrderNumber { get; set; } = 47;
+    [Parameter] public string Status { get; set; } = "Preparação"; 
+    [Parameter] public string StartDate { get; set; } = "11/10/2024";
+
+    private List<Product> Products = new()
+    {
+        new Product
+        {
+            Name = "Desktop - #1",
+            Description = "Computador King Mod Office-PC i5 12400 16GB DDR4 512GB UHD W11 Pro",
+            Status = "Pronto"
+        },
+        new Product
+        {
+            Name = "Desktop - #2",
+            Description = "Computador King Mod Office-PC i5 12400 16GB DDR4 512GB UHD W11 Pro",
+            Status = "Montar Motherboard"
+        },
+        new Product
+        {
+            Name = "Desktop - #3",
+            Description = "Computador King Mod Office-PC i5 12400 16GB DDR4 512GB UHD W11 Pro",
+            Status = "Cable Management"
+        }
+    };
+
+    private string GetStatusColor(string status)
+    {
+        return status switch
+        {
+            "Espera" => "yellow",
+            "Montar Caixa" => "yellow",
+            "Montar Motherboard" => "yellow",
+            "Montar Componentes" => "yellow",
+            "Cable Management" => "yellow",
+            "Pronto" => "green",
+            _ => "red" 
+        };
+    }
+
+    private class Product
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public string Status { get; set; }
+    }
+}
