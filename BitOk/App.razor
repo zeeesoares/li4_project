@@ -1,10 +1,30 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+﻿@using Microsoft.AspNetCore.Components
+@inject NavigationManager NavigationManager
+
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
         <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
     </Found>
     <NotFound>
         <LayoutView Layout="@typeof(MainLayout)">
-            <p>Desculpe, não há nada neste endereço.</p>
+            <h1>Página não encontrada</h1>
+            <p>A URL solicitada não corresponde a nenhuma página registrada.</p>
+            <p><strong>URL solicitada:</strong> @NavigationManager.Uri</p>
+
+            <script>
+                console.log("Página não encontrada: " + '@NavigationManager.Uri');
+            </script>
         </LayoutView>
     </NotFound>
 </Router>
+
+@code {
+    protected override void OnInitialized()
+    {
+        if (NavigationManager.Uri == NavigationManager.ToAbsoluteUri("/").ToString())
+        {
+            NavigationManager.NavigateTo("/registo");
+        }
+    }
+}
+
