@@ -1,0 +1,84 @@
+﻿@page "/nova-encomenda"
+@inject IOrderService OrderService
+@inject IProductService ProductService
+
+<div class="flex justify-center items-center mt-4">
+    <div class="text-center">
+        <h1 class="text-2xl font-bold">Nova Encomenda</h1>
+    </div>
+</div>
+
+<div class="bg-gray-200 rounded-lg p-4 max-w-5xl mx-auto flex flex-col gap-4 mt-4">
+    @foreach (var item in SelectedProducts)
+    {
+        <div class="bg-gray-300 rounded-lg p-4 flex justify-between items-center mb-4">
+            <div>
+                <select class="bg-white border rounded-md p-2 mb-2"
+                        @bind="item.DesktopId"
+                        @bind:event="onchange">
+                    @foreach (var desktop in Catalog)
+                    {
+                        <option value="@desktop.idDesktop">@desktop.Descricao</option>
+                    }
+                </select>
+                <p class="text-sm text-gray-600">Preço: @(Catalog.FirstOrDefault(d => d.idDesktop == item.DesktopId)?.Preco.ToString("C") ?? "N/A")</p>
+            </div>
+            <div class="flex items-center gap-4">
+                <label class="text-sm font-medium">Quantidade</label>
+                <select class="bg-white border rounded-md p-2"
+                        @bind="item.QuantidadeProd">
+                    @for (int i = 1; i <= 100; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <div>
+                <button class="bg-gray-800 rounded-full p-4 flex items-center justify-center hover:bg-gray-400 text-white"
+                        @onclick="@(() => RemoveProduct(item))">
+                    🗑
+                </button>
+
+            </div>
+        </div>
+    }
+
+    <button class="bg-gray-300 rounded-full p-4 flex items-center justify-center hover:bg-gray-400"
+            @onclick="AddNewProduct">
+        +
+    </button>
+
+    <button class="bg-gray-800 text-white px-6 py-3 rounded-md hover:bg-gray-700 mt-4">
+        Realizar Encomenda
+    </button>
+</div>
+
+@code {
+    private List<DesktopEncomendaModel> SelectedProducts { get; set; } = new();
+    private List<DesktopModel> Catalog { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Catalog = await ProductService.GetAllProducts();
+        AddNewProduct(); // Adiciona um produto inicial
+    }
+
+    private void AddNewProduct()
+    {
+        if (Catalog.Any())
+        {
+            SelectedProducts.Add(new DesktopEncomendaModel
+                {
+                    DesktopId = Catalog.First().idDesktop,
+                    QuantidadeProd = 1,
+                    Estado = "Espera" // Estado inicial
+                });
+        }
+    }
+
+    private void RemoveProduct(DesktopEncomendaModel product)
+    {
+        SelectedProducts.Remove(product);
+    }
+
+}

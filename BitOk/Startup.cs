@@ -23,10 +23,12 @@ namespace BitOk
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
-
             services.AddTransient<ISqlDataAccess, SqlDataAccess>();
             services.AddTransient<IUserManager, UserManager>();
+            services.AddTransient<IProductService, ProductService>();
+            services.AddTransient<IOrderService, OrderService>();
         }
+
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

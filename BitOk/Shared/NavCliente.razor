@@ -1,29 +1,36 @@
 ﻿@page "/navCliente"
-
 @using Microsoft.AspNetCore.Components.Forms
 @using System.Threading.Tasks
 @using Microsoft.AspNetCore.Components
+@inject NavigationManager NavigationManager
 
-<div class="mx-auto flex max-w-7xl items-center justify-between border-b-2 border-black pb-2">
+<div class="mx-auto flex max-w-full items-center justify-between border-b-2 border-black pb-2 px-6" style="height: 90px;">
     <div class="flex">
         <a href="/" class="flex items-center">
             <img class="h-20 w-auto" src="assets/logo.png" alt="Logo">
         </a>
     </div>
 
-    <div class="flex gap-x-28">
-        <NavLink href="/catalogo" ActiveClass="active-link" Match="NavLinkMatch.All" class="hover:underline font-bold font-sans">Catálogo</NavLink>
-        <NavLink href="/encMenu" ActiveClass="active-link" Match="NavLinkMatch.All" class="hover:underline font-bold font-sans">Linha de Montagem</NavLink>
-        <NavLink href="/encMenu" ActiveClass="active-link" Match="NavLinkMatch.All" class="hover:underline font-bold font-sans">Encomenda</NavLink>
+    <div class="flex gap-x-28 flex-grow justify-center relative">
+        <NavLink href="/catalogo" Match="NavLinkMatch.All" class="no-underline font-bold font-sans text-gray-800 py-2 px-4 relative">
+            Catálogo
+            <span class="absolute left-0 bottom-0 w-0 h-1 bg-black transition-all duration-300 hover:w-full @((NavigationManager.Uri.Contains("/catalogo")) ? "w-full" : "")"></span>
+        </NavLink>
+        <NavLink href="/encMenu" Match="NavLinkMatch.All" class="no-underline font-bold font-sans text-gray-800 py-2 px-4 relative">
+            Linha de Montagem
+            <span class="absolute left-0 bottom-0 w-0 h-1 bg-black transition-all duration-300 hover:w-full @((NavigationManager.Uri.Contains("/encMenu")) ? "w-full" : "")"></span>
+        </NavLink>
+        <NavLink href="/nova-encomenda" Match="NavLinkMatch.All" class="no-underline font-bold font-sans text-gray-800 py-2 px-4 relative">
+            Encomenda
+            <span class="absolute left-0 bottom-0 w-0 h-1 bg-black transition-all duration-300 hover:w-full @((NavigationManager.Uri.Contains("/nova-encomenda")) ? "w-full" : "")"></span>
+        </NavLink>
     </div>
 
     <div class="flex items-center space-x-10">
-        <img class="h-10 w-10 rounded-full" src="assets/user-avatar.png" alt="Avatar do usuário">
+        <img class="h-10 w-10 rounded-full" src="favicon.png" alt="Avatar do usuário">
         <div class="flex flex-col">
             <p class="text-black font-bold font-sans text-xs">João Martins</p>
             <p class="cursor-pointer hover:underline text-black font-bold font-sans text-xs">Sair</p>
         </div>
     </div>
 </div>
-
-

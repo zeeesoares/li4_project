@@ -17,16 +17,3 @@
         </LayoutView>
     </NotFound>
 </Router>
-
-@*
-@code {
-    protected override void OnInitialized()
-    {
-        if (NavigationManager.Uri == NavigationManager.ToAbsoluteUri("/").ToString())
-        {
-            NavigationManager.NavigateTo("/registo");
-        }
-    }
-}
-*@
-

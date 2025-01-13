@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "r6z1tquoQJky+0ssavsOfUB00gH0lOrjKu9Xo2uISbM=",
+  "Hash": "pDr12Akd9D3ArlUaexNIcySsA0fjJxnLsiksBr3baPs=",
   "Source": "BitOk",
   "BasePath": "_content/BitOk",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "BitOk\\wwwroot",
       "Source": "BitOk",
-      "ContentRoot": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
       "BasePath": "_content/BitOk",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\app.css",
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\app.css",
       "SourceId": "BitOk",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
       "BasePath": "_content/BitOk",
       "RelativePath": "app#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -38,10 +38,220 @@
       "OriginalItemSpec": "wwwroot\\app.css"
     },
     {
-      "Identity": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\assets\\logo.png",
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc1.jpg",
       "SourceId": "BitOk",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
+      "BasePath": "_content/BitOk",
+      "RelativePath": "assets/imagens/pc1#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "zxpaasrqpy",
+      "Integrity": "KfSTj30S/pOnfQywBoH/JNnuQzwHIkPhFvUky36ZLFc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\imagens\\pc1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc10.jpg",
+      "SourceId": "BitOk",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
+      "BasePath": "_content/BitOk",
+      "RelativePath": "assets/imagens/pc10#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "gq44hin03j",
+      "Integrity": "CGaQgJNftsS3bxTkwnavi299qqyKe4v42VJTzBcV3+s=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\imagens\\pc10.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc2.jpg",
+      "SourceId": "BitOk",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
+      "BasePath": "_content/BitOk",
+      "RelativePath": "assets/imagens/pc2#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "eifqf1p1uf",
+      "Integrity": "+kvBaOjcbrm449jf8oa+8eurkAUrrcrYFVQ7zXgNLN0=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\imagens\\pc2.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc3.jpg",
+      "SourceId": "BitOk",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
+      "BasePath": "_content/BitOk",
+      "RelativePath": "assets/imagens/pc3#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "lb09qc5svn",
+      "Integrity": "Hzw6Vu8RxnblC3ZSAmfY7xuqh9wMlILJbEDsLgxkR8A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\imagens\\pc3.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc4.jpg",
+      "SourceId": "BitOk",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
+      "BasePath": "_content/BitOk",
+      "RelativePath": "assets/imagens/pc4#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "l6pr744wqk",
+      "Integrity": "Pe+vfohG3/1Vz8jdnaobBlQqDheNcKp68MbwCEojiDs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\imagens\\pc4.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc5.jpg",
+      "SourceId": "BitOk",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
+      "BasePath": "_content/BitOk",
+      "RelativePath": "assets/imagens/pc5#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "srb98j9yy6",
+      "Integrity": "KBjsMiSgUATwIlDbhky3TbOHqzAMrUZNuMPUaCwTQCc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\imagens\\pc5.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc6.jpg",
+      "SourceId": "BitOk",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
+      "BasePath": "_content/BitOk",
+      "RelativePath": "assets/imagens/pc6#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "kxl3ug4gar",
+      "Integrity": "yO8jMW8KpDxM7waooakbM3/Z++LGeRa2nK4YUy0AOCs=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\imagens\\pc6.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc7.jpg",
+      "SourceId": "BitOk",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
+      "BasePath": "_content/BitOk",
+      "RelativePath": "assets/imagens/pc7#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "8lwi1q8vad",
+      "Integrity": "hAG0XqU8BAuBvvSlsM8cgGnlShIQHzpDqu3tfgegwSQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\imagens\\pc7.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc8.jpg",
+      "SourceId": "BitOk",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
+      "BasePath": "_content/BitOk",
+      "RelativePath": "assets/imagens/pc8#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ru4tbt78mc",
+      "Integrity": "06zUqNWT78JJQFRbL8sEF7XEixaO/6NnzRYhV6ECyuM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\imagens\\pc8.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc9.jpg",
+      "SourceId": "BitOk",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
+      "BasePath": "_content/BitOk",
+      "RelativePath": "assets/imagens/pc9#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "tbs1ovv8fv",
+      "Integrity": "V9adPBFSKzbghPG5ZiTQjvGvQ8c8EX4X23ERSOV9A7g=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\imagens\\pc9.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\logo.png",
+      "SourceId": "BitOk",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
       "BasePath": "_content/BitOk",
       "RelativePath": "assets/logo#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -59,10 +269,10 @@
       "OriginalItemSpec": "wwwroot\\assets\\logo.png"
     },
     {
-      "Identity": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\bootstrap\\bootstrap.min.css",
       "SourceId": "BitOk",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
       "BasePath": "_content/BitOk",
       "RelativePath": "bootstrap/bootstrap.min#[.{fingerprint}]?.css",
       "AssetKind": "All",
@@ -73,17 +283,17 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "bpk8xqwxhs",
-      "Integrity": "z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=",
+      "Fingerprint": "6gzpyzhau4",
+      "Integrity": "SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "BitOk",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
       "BasePath": "_content/BitOk",
       "RelativePath": "bootstrap/bootstrap.min.css#[.{fingerprint}]?.map",
       "AssetKind": "All",
@@ -101,10 +311,10 @@
       "OriginalItemSpec": "wwwroot\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\favicon.png",
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\favicon.png",
       "SourceId": "BitOk",
       "SourceType": "Discovered",
-      "ContentRoot": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
       "BasePath": "_content/BitOk",
       "RelativePath": "favicon#[.{fingerprint}]?.png",
       "AssetKind": "All",
@@ -125,7 +335,7 @@
   "Endpoints": [
     {
       "Route": "app.css",
-      "AssetFile": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\app.css",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\app.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -146,7 +356,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 30 Dec 2024 10:32:17 GMT"
+          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -162,7 +372,7 @@
     },
     {
       "Route": "app.da95v2qkru.css",
-      "AssetFile": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\app.css",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\app.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -183,7 +393,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 30 Dec 2024 10:32:17 GMT"
+          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -206,8 +416,828 @@
       ]
     },
     {
+      "Route": "assets/imagens/pc1.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "26298"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KfSTj30S/pOnfQywBoH/JNnuQzwHIkPhFvUky36ZLFc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:44:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-KfSTj30S/pOnfQywBoH/JNnuQzwHIkPhFvUky36ZLFc="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc1.zxpaasrqpy.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc1.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "26298"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KfSTj30S/pOnfQywBoH/JNnuQzwHIkPhFvUky36ZLFc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:44:02 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "zxpaasrqpy"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/imagens/pc1.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KfSTj30S/pOnfQywBoH/JNnuQzwHIkPhFvUky36ZLFc="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc10.gq44hin03j.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc10.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5882"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"CGaQgJNftsS3bxTkwnavi299qqyKe4v42VJTzBcV3+s=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:49:50 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "gq44hin03j"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/imagens/pc10.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-CGaQgJNftsS3bxTkwnavi299qqyKe4v42VJTzBcV3+s="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc10.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc10.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5882"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"CGaQgJNftsS3bxTkwnavi299qqyKe4v42VJTzBcV3+s=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:49:50 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-CGaQgJNftsS3bxTkwnavi299qqyKe4v42VJTzBcV3+s="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc2.eifqf1p1uf.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "19386"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+kvBaOjcbrm449jf8oa+8eurkAUrrcrYFVQ7zXgNLN0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:47:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "eifqf1p1uf"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/imagens/pc2.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-+kvBaOjcbrm449jf8oa+8eurkAUrrcrYFVQ7zXgNLN0="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc2.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc2.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "19386"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+kvBaOjcbrm449jf8oa+8eurkAUrrcrYFVQ7zXgNLN0=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:47:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+kvBaOjcbrm449jf8oa+8eurkAUrrcrYFVQ7zXgNLN0="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc3.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc3.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "23182"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Hzw6Vu8RxnblC3ZSAmfY7xuqh9wMlILJbEDsLgxkR8A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:46:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Hzw6Vu8RxnblC3ZSAmfY7xuqh9wMlILJbEDsLgxkR8A="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc3.lb09qc5svn.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc3.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "23182"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Hzw6Vu8RxnblC3ZSAmfY7xuqh9wMlILJbEDsLgxkR8A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:46:01 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "lb09qc5svn"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/imagens/pc3.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Hzw6Vu8RxnblC3ZSAmfY7xuqh9wMlILJbEDsLgxkR8A="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc4.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc4.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "65890"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Pe+vfohG3/1Vz8jdnaobBlQqDheNcKp68MbwCEojiDs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:45:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Pe+vfohG3/1Vz8jdnaobBlQqDheNcKp68MbwCEojiDs="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc4.l6pr744wqk.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc4.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "65890"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Pe+vfohG3/1Vz8jdnaobBlQqDheNcKp68MbwCEojiDs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:45:40 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "l6pr744wqk"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/imagens/pc4.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Pe+vfohG3/1Vz8jdnaobBlQqDheNcKp68MbwCEojiDs="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc5.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc5.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "250256"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KBjsMiSgUATwIlDbhky3TbOHqzAMrUZNuMPUaCwTQCc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:48:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-KBjsMiSgUATwIlDbhky3TbOHqzAMrUZNuMPUaCwTQCc="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc5.srb98j9yy6.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc5.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "250256"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"KBjsMiSgUATwIlDbhky3TbOHqzAMrUZNuMPUaCwTQCc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:48:06 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "srb98j9yy6"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/imagens/pc5.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-KBjsMiSgUATwIlDbhky3TbOHqzAMrUZNuMPUaCwTQCc="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc6.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc6.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "21948"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yO8jMW8KpDxM7waooakbM3/Z++LGeRa2nK4YUy0AOCs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:48:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-yO8jMW8KpDxM7waooakbM3/Z++LGeRa2nK4YUy0AOCs="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc6.kxl3ug4gar.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc6.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "21948"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"yO8jMW8KpDxM7waooakbM3/Z++LGeRa2nK4YUy0AOCs=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:48:25 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "kxl3ug4gar"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/imagens/pc6.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-yO8jMW8KpDxM7waooakbM3/Z++LGeRa2nK4YUy0AOCs="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc7.8lwi1q8vad.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc7.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "54740"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hAG0XqU8BAuBvvSlsM8cgGnlShIQHzpDqu3tfgegwSQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:48:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "8lwi1q8vad"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/imagens/pc7.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-hAG0XqU8BAuBvvSlsM8cgGnlShIQHzpDqu3tfgegwSQ="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc7.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc7.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "54740"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"hAG0XqU8BAuBvvSlsM8cgGnlShIQHzpDqu3tfgegwSQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:48:45 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-hAG0XqU8BAuBvvSlsM8cgGnlShIQHzpDqu3tfgegwSQ="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc8.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc8.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "329550"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"06zUqNWT78JJQFRbL8sEF7XEixaO/6NnzRYhV6ECyuM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:49:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-06zUqNWT78JJQFRbL8sEF7XEixaO/6NnzRYhV6ECyuM="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc8.ru4tbt78mc.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc8.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "329550"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"06zUqNWT78JJQFRbL8sEF7XEixaO/6NnzRYhV6ECyuM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:49:05 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ru4tbt78mc"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/imagens/pc8.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-06zUqNWT78JJQFRbL8sEF7XEixaO/6NnzRYhV6ECyuM="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc9.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc9.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3630"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"V9adPBFSKzbghPG5ZiTQjvGvQ8c8EX4X23ERSOV9A7g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:49:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-V9adPBFSKzbghPG5ZiTQjvGvQ8c8EX4X23ERSOV9A7g="
+        }
+      ]
+    },
+    {
+      "Route": "assets/imagens/pc9.tbs1ovv8fv.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc9.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "3630"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"V9adPBFSKzbghPG5ZiTQjvGvQ8c8EX4X23ERSOV9A7g=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Mon, 13 Jan 2025 22:49:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "tbs1ovv8fv"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/imagens/pc9.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-V9adPBFSKzbghPG5ZiTQjvGvQ8c8EX4X23ERSOV9A7g="
+        }
+      ]
+    },
+    {
       "Route": "assets/logo.png",
-      "AssetFile": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\assets\\logo.png",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\logo.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -228,7 +1258,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 11 Nov 2024 21:28:03 GMT"
+          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -244,7 +1274,7 @@
     },
     {
       "Route": "assets/logo.ta4wffolu0.png",
-      "AssetFile": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\assets\\logo.png",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\logo.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -265,7 +1295,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 11 Nov 2024 21:28:03 GMT"
+          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -288,8 +1318,8 @@
       ]
     },
     {
-      "Route": "bootstrap/bootstrap.min.bpk8xqwxhs.css",
-      "AssetFile": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Route": "bootstrap/bootstrap.min.6gzpyzhau4.css",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\bootstrap\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -298,7 +1328,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "162720"
+          "Value": "162726"
         },
         {
           "Name": "Content-Type",
@@ -306,11 +1336,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=\""
+          "Value": "\"SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 30 Dec 2024 10:32:17 GMT"
+          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -320,7 +1350,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "bpk8xqwxhs"
+          "Value": "6gzpyzhau4"
         },
         {
           "Name": "label",
@@ -328,13 +1358,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg="
+          "Value": "sha256-SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0="
         }
       ]
     },
     {
       "Route": "bootstrap/bootstrap.min.css",
-      "AssetFile": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\bootstrap\\bootstrap.min.css",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -343,7 +1373,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "162720"
+          "Value": "162726"
         },
         {
           "Name": "Content-Type",
@@ -351,11 +1381,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg=\""
+          "Value": "\"SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 30 Dec 2024 10:32:17 GMT"
+          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -365,13 +1395,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-z8OR40MowJ8GgK6P89Y+hiJK5+cclzFHzLhFQLL92bg="
+          "Value": "sha256-SiIVMGgRhdXjKSTIddX7mh9IbOXVcwQWc7/p4nS6D/0="
         }
       ]
     },
     {
       "Route": "bootstrap/bootstrap.min.css.8inm30yfxf.map",
-      "AssetFile": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -392,7 +1422,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 30 Dec 2024 10:32:17 GMT"
+          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -416,7 +1446,7 @@
     },
     {
       "Route": "bootstrap/bootstrap.min.css.map",
-      "AssetFile": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -437,7 +1467,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 30 Dec 2024 10:32:17 GMT"
+          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -453,7 +1483,7 @@
     },
     {
       "Route": "favicon.ifv42okdf2.png",
-      "AssetFile": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\favicon.png",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\favicon.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -474,7 +1504,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 30 Dec 2024 10:32:17 GMT"
+          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -498,7 +1528,7 @@
     },
     {
       "Route": "favicon.png",
-      "AssetFile": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\favicon.png",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\favicon.png",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -519,7 +1549,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 30 Dec 2024 10:32:17 GMT"
+          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
         },
         {
           "Name": "Cache-Control",

@@ -9,69 +9,77 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = BitOk
 build_property.RootNamespace = BitOk
-build_property.ProjectDir = D:\Universidade\LI4\Projeto\BitOkSol\BitOk\
+build_property.ProjectDir = C:\Users\User\Desktop\li4_project\BitOk\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Universidade\LI4\Projeto\BitOkSol\BitOk
+build_property.MSBuildProjectDirectory = C:\Users\User\Desktop\li4_project\BitOk
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 8.0
 build_property.EnableCodeStyleSeverity = 
 
-[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/App.razor]
+[C:/Users/User/Desktop/li4_project/BitOk/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Pages/AcompanharEncomenda.razor]
+[C:/Users/User/Desktop/li4_project/BitOk/Pages/About.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWJvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/li4_project/BitOk/Pages/AcompanharEncomenda.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNvbXBhbmhhckVuY29tZW5kYS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Pages/AcompanharProduto.razor]
+[C:/Users/User/Desktop/li4_project/BitOk/Pages/AcompanharProduto.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWNvbXBhbmhhclByb2R1dG8ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Pages/Catalogo.razor]
+[C:/Users/User/Desktop/li4_project/BitOk/Pages/Catalogo.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ2F0YWxvZ28ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Pages/EncMenu.razor]
+[C:/Users/User/Desktop/li4_project/BitOk/Pages/EncMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW5jTWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Pages/Login.razor]
+[C:/Users/User/Desktop/li4_project/BitOk/Pages/Login.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTG9naW4ucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Pages/Registo.razor]
+[C:/Users/User/Desktop/li4_project/BitOk/Pages/NewOrder.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTmV3T3JkZXIucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/User/Desktop/li4_project/BitOk/Pages/Registo.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVnaXN0by5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Shared/MainLayout.razor]
+[C:/Users/User/Desktop/li4_project/BitOk/Shared/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Shared/NavAdmin.razor]
+[C:/Users/User/Desktop/li4_project/BitOk/Shared/NavAdmin.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdkFkbWluLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Shared/NavCliente.razor]
+[C:/Users/User/Desktop/li4_project/BitOk/Shared/NavCliente.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdkNsaWVudGUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Shared/NoLayout.razor]
+[C:/Users/User/Desktop/li4_project/BitOk/Shared/NoLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5vTGF5b3V0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/_Imports.razor]
+[C:/Users/User/Desktop/li4_project/BitOk/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Pages/_Host.cshtml]
+[C:/Users/User/Desktop/li4_project/BitOk/Pages/_Host.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Universidade/LI4/Projeto/BitOkSol/BitOk/Pages/_Layout.cshtml]
+[C:/Users/User/Desktop/li4_project/BitOk/Pages/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0xheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
