@@ -8,7 +8,7 @@
     <NotFound>
         <LayoutView Layout="@typeof(MainLayout)">
             <h1>Página não encontrada</h1>
-            <p>A URL solicitada não corresponde a nenhuma página registrada.</p>
+            <p>A URL solicitada não corresponde a nenhuma página registada.</p>
             <p><strong>URL solicitada:</strong> @NavigationManager.Uri</p>
 
             <script>
@@ -18,6 +18,7 @@
     </NotFound>
 </Router>
 
+@*
 @code {
     protected override void OnInitialized()
     {
@@ -27,4 +28,5 @@
         }
     }
 }
+*@
 

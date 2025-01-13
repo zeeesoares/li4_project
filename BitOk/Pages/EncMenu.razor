@@ -1,40 +1,153 @@
 ﻿@page "/encMenu"
 
-<div class="bg-gray-200 rounded-lg p-4 flex justify-between items-center max-w-5xl mx-auto">
-    <div>
-        <p class="text-base font-bold text-black">Encomenda #@OrderNumber</p>
-        <div class="flex items-center gap-2 mt-2">
-            <span class="w-4 h-4 rounded-full" style="background-color: @GetStatusColor()"></span>
-            <span class="text-base font-bold text-black">- @Status</span>
-        </div>
-        <p class="mt-2 text-base font-bold text-black">Iniciada em: @StartDate</p>
-    </div>
-    <div class="flex items-center gap-4">
-        @if (Status == "Espera")
-        {
-            <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700">
-                Cancelar Encomenda
-            </button>
-        }
-        <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700">
-            Acompanhar Encomenda
+<div class="mt-8"></div>
+
+<!-- Contêiner Principal -->
+<div class="bg-gray-200 rounded-lg p-4 max-w-5xl mx-auto flex flex-col gap-4">
+
+    <!-- Controle de Abas -->
+    <div class="flex space-x-4 border-b">
+        <button class="py-2 px-4 text-sm font-bold border-b-2"
+                style="@(ActiveTab == 1 ? "border-black text-black" : "border-transparent text-gray-500")"
+                @onclick="() => ChangeTab(1)">
+            Em Espera
         </button>
+
+        <button class="py-2 px-4 text-sm font-bold border-b-2"
+                style="@(ActiveTab == 2 ? "border-black text-black" : "border-transparent text-gray-500")"
+                @onclick="() => ChangeTab(2)">
+            Preparação
+        </button>
+
+        <button class="py-2 px-4 text-sm font-bold border-b-2"
+                style="@(ActiveTab == 3 ? "border-black text-black" : "border-transparent text-gray-500")"
+                @onclick="() => ChangeTab(3)">
+            Concluídas
+        </button>
+    </div>
+
+    <!-- Conteúdo das Abas -->
+    <div>
+        @if (ActiveTab == 1)
+        {
+            @foreach (var order in PendingOrders)
+            {
+                @RenderOrder(order)
+            }
+        }
+        else if (ActiveTab == 2)
+        {
+            @foreach (var order in PreparationOrders)
+            {
+                @RenderOrder(order)
+            }
+        }
+        else if (ActiveTab == 3)
+        {
+            @foreach (var order in CompletedOrders)
+            {
+                @RenderOrder(order)
+            }
+        }
     </div>
 </div>
 
 @code {
-    [Parameter] public int OrderNumber { get; set; } = 1; // Meter valores corretos de cada encomenda
-    [Parameter] public string Status { get; set; } = "Espera"; 
-    [Parameter] public string StartDate { get; set; } = "01/01/2025"; 
+    // Estado da aba ativa
+    private int ActiveTab { get; set; } = 1;
 
-    private string GetStatusColor()
+    // Dados das encomendas por status
+    private List<Order> PendingOrders = new()
     {
-        return Status switch
+        new Order { OrderNumber = 1, Status = "Espera", StartDate = "01/01/2025" },
+        new Order { OrderNumber = 4, Status = "Espera", StartDate = "01/01/2025" },
+        new Order { OrderNumber = 5, Status = "Espera", StartDate = "01/01/2025" },
+        new Order { OrderNumber = 6, Status = "Espera", StartDate = "01/01/2025" }
+    };
+
+    private List<Order> PreparationOrders = new()
+    {
+        new Order { OrderNumber = 2, Status = "Preparação", StartDate = "02/01/2025" }
+    };
+
+    private List<Order> CompletedOrders = new()
+    {
+        new Order { OrderNumber = 3, Status = "Completa", StartDate = "03/01/2025" }
+    };
+
+    // Método para alternar abas
+    private void ChangeTab(int tabIndex)
+    {
+        ActiveTab = tabIndex;
+    }
+
+    // Método para renderizar uma encomenda
+    private RenderFragment RenderOrder(Order order) => builder =>
+    {
+        builder.OpenElement(0, "div");
+        builder.AddAttribute(1, "class", "bg-gray-300 rounded-lg p-4 flex justify-between items-center mb-4");
+
+        // Informações da encomenda
+        builder.OpenElement(2, "div");
+        builder.OpenElement(3, "p");
+        builder.AddAttribute(4, "class", "text-base font-bold text-black");
+        builder.AddContent(5, $"Encomenda #{order.OrderNumber}");
+        builder.CloseElement(); // p
+
+        builder.OpenElement(6, "div");
+        builder.AddAttribute(7, "class", "flex items-center gap-2 mt-2");
+        builder.OpenElement(8, "span");
+        builder.AddAttribute(9, "class", "w-4 h-4 rounded-full");
+        builder.AddAttribute(10, "style", $"background-color: {GetStatusColor(order.Status)}");
+        builder.CloseElement(); // span
+        builder.OpenElement(11, "span");
+        builder.AddAttribute(12, "class", "text-base font-bold text-black");
+        builder.AddContent(13, $"- {order.Status}");
+        builder.CloseElement(); // span
+        builder.CloseElement(); // div
+
+        builder.OpenElement(14, "p");
+        builder.AddAttribute(15, "class", "mt-2 text-base font-bold text-black");
+        builder.AddContent(16, $"Iniciada em: {order.StartDate}");
+        builder.CloseElement(); // p
+        builder.CloseElement(); // div
+
+        // Botões
+        builder.OpenElement(17, "div");
+        builder.AddAttribute(18, "class", "flex items-center gap-4");
+
+        if (order.Status == "Espera")
         {
-            "Completa" => "green",
-            "Preparação" => "yellow",
+            builder.OpenElement(19, "button");
+            builder.AddAttribute(20, "class", "bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700");
+            builder.AddContent(21, "Cancelar Encomenda");
+            builder.CloseElement(); // button
+        }
+
+        builder.OpenElement(22, "button");
+        builder.AddAttribute(23, "class", "bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700");
+        builder.AddContent(24, "Acompanhar Encomenda");
+        builder.CloseElement(); // button
+        builder.CloseElement(); // div
+
+        builder.CloseElement(); // div (container da encomenda)
+    };
+
+    private string GetStatusColor(string status)
+    {
+        return status switch
+        {
             "Espera" => "red",
-            _ => "blue" 
+            "Preparação" => "yellow",
+            "Completa" => "green",
+            _ => "blue"
         };
+    }
+
+    private class Order
+    {
+        public int OrderNumber { get; set; }
+        public string Status { get; set; }
+        public string StartDate { get; set; }
     }
 }

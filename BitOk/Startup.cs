@@ -4,6 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using BitOk.Data;
+using BitOk.Data.Services;
+
 namespace BitOk
 {
     public class Startup
@@ -19,6 +22,10 @@ namespace BitOk
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
+
+
+            services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+            services.AddTransient<IUserManager, UserManager>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
