@@ -1,4 +1,6 @@
 wwwroot\app.css
+wwwroot\assets\admin.png
+wwwroot\assets\client.jpg
 wwwroot\assets\imagens\pc1.jpg
 wwwroot\assets\imagens\pc10.jpg
 wwwroot\assets\imagens\pc2.jpg

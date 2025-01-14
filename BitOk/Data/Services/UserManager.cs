@@ -1,4 +1,6 @@
-﻿namespace BitOk.Data.Services
+﻿using BitOk.Data.Models;
+
+namespace BitOk.Data.Services
 {
     public class UserManager : IUserManager
     {
@@ -20,5 +22,34 @@
             };
             return _db.ExecuteTransaction(queries);
         }
+
+
+        public Task<UserModel?> GetUser(string username)
+        {
+            const string sql = "SELECT * FROM dbo.Utilizador WHERE Username = @Username";
+            return _db.LoadData<UserModel, dynamic>(sql, new { Username = username })
+                .ContinueWith(task => task.Result.FirstOrDefault());
+        }
+
+        public Task<UserModel?> GetClient(string username)
+        {
+            const string sql = @"
+            SELECT * FROM dbo.Utilizador AS u
+            WHERE u.Username = @Username AND u.Role = 'client'";
+
+            return _db.LoadData<UserModel, dynamic>(sql, new { Username = username })
+                .ContinueWith(task => task.Result.FirstOrDefault());
+        }
+
+        public Task<UserModel?> GetAdmin(string username)
+        {
+            const string sql = @"
+            SELECT * FROM dbo.Utilizador AS u
+            WHERE u.Username = @Username AND u.Role = 'admin'";
+
+            return _db.LoadData<UserModel, dynamic>(sql, new { Username = username })
+                .ContinueWith(task => task.Result.FirstOrDefault());
+        }
+
     }
 }

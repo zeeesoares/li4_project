@@ -6,8 +6,8 @@
 @using System.ComponentModel.DataAnnotations
 @using Microsoft.AspNetCore.Components
 @inject Data.Services.IUserManager _db
-@inject IJSRuntime js
 @inject NavigationManager NavManager
+
 
 <div class="flex flex-col justify-center items-center h-screen">
     <div class="flex flex-col space-y-2 items-center justify-center mb-6">
@@ -18,7 +18,6 @@
         <p class="text-2xl font-extrabold text-center mb-6">Registar</p>
         <EditForm EditContext="_registerFormContext" OnValidSubmit="RegisterUser">
             <DataAnnotationsValidator />
-            <ValidationSummary />
 
             <div class="mb-4">
                 <label for="nome" class="block text-gray-700 text-left mb-2">Nome</label>
@@ -89,7 +88,6 @@
     private async Task RegisterUser()
     {
         await _db.CreateUser(_registerModel.Nome, _registerModel.Username, _registerModel.Password, "client");
-        await js.InvokeVoidAsync("alert", "Conta criada com sucesso!");
         NavManager.NavigateTo("/login", true);
     }
 }

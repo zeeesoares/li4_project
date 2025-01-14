@@ -5,6 +5,14 @@
       "PackagePath": "staticwebassets\\app.css"
     },
     {
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\admin.png",
+      "PackagePath": "staticwebassets\\assets\\admin.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\client.jpg",
+      "PackagePath": "staticwebassets\\assets\\client.jpg"
+    },
+    {
       "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc1.jpg",
       "PackagePath": "staticwebassets\\assets\\imagens\\pc1.jpg"
     },

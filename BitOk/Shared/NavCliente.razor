@@ -1,17 +1,22 @@
 ﻿@page "/navCliente"
+
 @using Microsoft.AspNetCore.Components.Forms
 @using System.Threading.Tasks
 @using Microsoft.AspNetCore.Components
-@inject NavigationManager NavigationManager
 
-<div class="mx-auto flex max-w-full items-center justify-between border-b-2 border-black pb-2 px-6" style="height: 90px;">
+@inject IJSRuntime js
+@inject NavigationManager NavigationManager
+@inject AuthenticationStateProvider AuthProvider
+
+
+<div class="mx-auto flex max-w-full items-center justify-between border-b-2 border-black pb-2 px-6" style="height: 80px;">
     <div class="flex">
         <a href="/" class="flex items-center">
             <img class="h-20 w-auto" src="assets/logo.png" alt="Logo">
         </a>
     </div>
 
-    <div class="flex gap-x-28 flex-grow justify-center relative">
+    <div class="flex gap-x-20 flex-grow justify-center relative">
         <NavLink href="/catalogo" Match="NavLinkMatch.All" class="no-underline font-bold font-sans text-gray-800 py-2 px-4 relative">
             Catálogo
             <span class="absolute left-0 bottom-0 w-0 h-1 bg-black transition-all duration-300 hover:w-full @((NavigationManager.Uri.Contains("/catalogo")) ? "w-full" : "")"></span>
@@ -25,12 +30,36 @@
             <span class="absolute left-0 bottom-0 w-0 h-1 bg-black transition-all duration-300 hover:w-full @((NavigationManager.Uri.Contains("/nova-encomenda")) ? "w-full" : "")"></span>
         </NavLink>
     </div>
-
-    <div class="flex items-center space-x-10">
-        <img class="h-10 w-10 rounded-full" src="favicon.png" alt="Avatar do usuário">
+    <div class="flex items-center space-x-5">
+        <img class="h-10 w-10 rounded-full" src="assets/client.jpg" alt="Avatar do usuário">
         <div class="flex flex-col">
-            <p class="text-black font-bold font-sans text-xs">João Martins</p>
-            <p class="cursor-pointer hover:underline text-black font-bold font-sans text-xs">Sair</p>
+            <p class="text-black font-bold font-sans text-xs">@Username</p>
+            <p class="cursor-pointer hover:underline text-black font-bold font-sans text-xs" @onclick="Logout">Sair</p>
         </div>
     </div>
 </div>
+
+
+
+@code {
+    private string Username { get; set; } = "Usuário";
+
+    protected override async Task OnInitializedAsync()
+    {
+        var ourProvider = (Auth.AuthMain)AuthProvider;
+        Username = await ourProvider.GetUsername() ?? "Usuário";
+    }
+
+    private async Task Logout()
+    {
+        if (AuthProvider is Auth.AuthMain ourProvider)
+        {
+            await ourProvider.Logout();
+            NavigationManager.NavigateTo("/", true);
+        }
+        else
+        {
+            await js.InvokeVoidAsync("alert", "Erro ao sair. Provider não encontrado.");
+        }
+    }
+}

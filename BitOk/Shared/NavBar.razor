@@ -1,0 +1,47 @@
+﻿@page "/navBar"
+
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IUserManager _db
+@inject NavigationManager Navigation
+
+ @if (isAuthenticated && role == Role.Client)
+     {
+       <NavCliente />
+     }
+        else if (isAuthenticated && role == Role.Admin)
+     {
+        <NavAdmin />
+     }
+
+@code {
+    private bool isAuthenticated;
+    private Role role;
+ 
+    private Data.Models.UserModel? userC;
+    private Data.Models.UserModel? userA;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        var ourProvider = (Auth.AuthMain)AuthenticationStateProvider;
+        isAuthenticated = await ourProvider.IsAuthenticated();
+        string? username = await ourProvider.GetUsername();
+        string? role = await ourProvider.GetRole();
+
+        if (role != null)
+        {
+            this.role = UserModel.FromString(role);
+        }
+
+        if (username != null)
+        {
+            if (this.role == Role.Client)
+            {
+                userC = await _db.GetClient(username);
+            }
+            else
+            {
+                userA = await _db.GetAdmin(username);
+            }
+        }
+    }
+}

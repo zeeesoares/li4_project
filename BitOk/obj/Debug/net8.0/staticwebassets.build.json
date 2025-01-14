@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "pDr12Akd9D3ArlUaexNIcySsA0fjJxnLsiksBr3baPs=",
+  "Hash": "n4G1hgOVapvKnYlrcct/Wj1YmA1mxuph5f3kJFptC/U=",
   "Source": "BitOk",
   "BasePath": "_content/BitOk",
   "Mode": "Default",
@@ -36,6 +36,48 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\app.css"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\admin.png",
+      "SourceId": "BitOk",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
+      "BasePath": "_content/BitOk",
+      "RelativePath": "assets/admin#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "enjnb4katx",
+      "Integrity": "Ov5xm4C97M826JHgdZOoMJIUGK/I9e7ZAm/371OAzJY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\admin.png"
+    },
+    {
+      "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\client.jpg",
+      "SourceId": "BitOk",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\",
+      "BasePath": "_content/BitOk",
+      "RelativePath": "assets/client#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ila8wp1pi5",
+      "Integrity": "plsNKCE8Ie1HYwNgl2eTQ0dRN0mDx47gplll/4zCoek=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\assets\\client.jpg"
     },
     {
       "Identity": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc1.jpg",
@@ -356,7 +398,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -393,7 +435,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -412,6 +454,170 @@
         {
           "Name": "integrity",
           "Value": "sha256-u9qEka1auR7E3rd3/8/j8hkQdSOYj9bRJ4nYiFDR1sE="
+        }
+      ]
+    },
+    {
+      "Route": "assets/admin.enjnb4katx.png",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\admin.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "39304"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ov5xm4C97M826JHgdZOoMJIUGK/I9e7ZAm/371OAzJY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 14 Jan 2025 21:52:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "enjnb4katx"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/admin.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Ov5xm4C97M826JHgdZOoMJIUGK/I9e7ZAm/371OAzJY="
+        }
+      ]
+    },
+    {
+      "Route": "assets/admin.png",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\admin.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "39304"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Ov5xm4C97M826JHgdZOoMJIUGK/I9e7ZAm/371OAzJY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 14 Jan 2025 21:52:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Ov5xm4C97M826JHgdZOoMJIUGK/I9e7ZAm/371OAzJY="
+        }
+      ]
+    },
+    {
+      "Route": "assets/client.ila8wp1pi5.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\client.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "155797"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"plsNKCE8Ie1HYwNgl2eTQ0dRN0mDx47gplll/4zCoek=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 14 Jan 2025 21:52:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ila8wp1pi5"
+        },
+        {
+          "Name": "label",
+          "Value": "assets/client.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-plsNKCE8Ie1HYwNgl2eTQ0dRN0mDx47gplll/4zCoek="
+        }
+      ]
+    },
+    {
+      "Route": "assets/client.jpg",
+      "AssetFile": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\client.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "155797"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"plsNKCE8Ie1HYwNgl2eTQ0dRN0mDx47gplll/4zCoek=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 14 Jan 2025 21:52:10 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-plsNKCE8Ie1HYwNgl2eTQ0dRN0mDx47gplll/4zCoek="
         }
       ]
     },
@@ -438,7 +644,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:44:02 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -475,7 +681,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:44:02 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -520,7 +726,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:49:50 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -565,7 +771,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:49:50 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -602,7 +808,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:47:23 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -647,7 +853,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:47:23 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -684,7 +890,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:46:01 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -721,7 +927,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:46:01 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -766,7 +972,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:45:40 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -803,7 +1009,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:45:40 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -848,7 +1054,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:48:06 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -885,7 +1091,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:48:06 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -930,7 +1136,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:48:25 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -967,7 +1173,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:48:25 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1012,7 +1218,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:48:45 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1057,7 +1263,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:48:45 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1094,7 +1300,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:49:05 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1131,7 +1337,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:49:05 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1176,7 +1382,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:49:26 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1213,7 +1419,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 22:49:26 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:42 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1258,7 +1464,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
+          "Value": "Tue, 14 Jan 2025 21:52:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1295,7 +1501,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
+          "Value": "Tue, 14 Jan 2025 21:52:10 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1340,7 +1546,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1385,7 +1591,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1422,7 +1628,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1467,7 +1673,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1504,7 +1710,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:04 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -1549,7 +1755,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Mon, 13 Jan 2025 16:01:10 GMT"
+          "Value": "Tue, 14 Jan 2025 21:48:04 GMT"
         },
         {
           "Name": "Cache-Control",
