@@ -1,153 +1,122 @@
 ﻿@page "/encMenu"
+@inject IOrderService OrderService
 
-<div class="mt-8"></div>
+<div class="flex justify-center items-center mt-4">
+    <div class="text-center">
+        <h1 class="text-2xl font-bold">Encomendas</h1>
+    </div>
+</div>
 
-<!-- Contêiner Principal -->
-<div class="bg-gray-200 rounded-lg p-4 max-w-5xl mx-auto flex flex-col gap-4">
+<div class="bg-gray-200 rounded-lg p-4 max-w-5xl mx-auto flex flex-col gap-4 mt-4">
 
-    <!-- Controle de Abas -->
     <div class="flex space-x-4 border-b">
-        <button class="py-2 px-4 text-sm font-bold border-b-2"
-                style="@(ActiveTab == 1 ? "border-black text-black" : "border-transparent text-gray-500")"
+        <button class="py-2 px-4 text-sm font-bold relative"
+                style="@(ActiveTab == 1 ? "text-black" : "text-gray-500")"
                 @onclick="() => ChangeTab(1)">
             Em Espera
+            <span class="absolute left-0 bottom-0 w-0 h-1 bg-black transition-all duration-300 @((ActiveTab == 1) ? "w-full" : "") hover:w-full"></span>
         </button>
 
-        <button class="py-2 px-4 text-sm font-bold border-b-2"
-                style="@(ActiveTab == 2 ? "border-black text-black" : "border-transparent text-gray-500")"
+        <button class="py-2 px-4 text-sm font-bold relative"
+                style="@(ActiveTab == 2 ? "text-black" : "text-gray-500")"
                 @onclick="() => ChangeTab(2)">
             Preparação
+            <span class="absolute left-0 bottom-0 w-0 h-1 bg-black transition-all duration-300 @((ActiveTab == 2) ? "w-full" : "") hover:w-full"></span>
         </button>
 
-        <button class="py-2 px-4 text-sm font-bold border-b-2"
-                style="@(ActiveTab == 3 ? "border-black text-black" : "border-transparent text-gray-500")"
+        <button class="py-2 px-4 text-sm font-bold relative"
+                style="@(ActiveTab == 3 ? "text-black" : "text-gray-500")"
                 @onclick="() => ChangeTab(3)">
             Concluídas
+            <span class="absolute left-0 bottom-0 w-0 h-1 bg-black transition-all duration-300 @((ActiveTab == 3) ? "w-full" : "") hover:w-full"></span>
         </button>
     </div>
 
-    <!-- Conteúdo das Abas -->
     <div>
-        @if (ActiveTab == 1)
+        @foreach (var order in GetOrdersByActiveTab())
         {
-            @foreach (var order in PendingOrders)
+            try
             {
-                @RenderOrder(order)
+                <div class="bg-gray-300 rounded-lg p-4 flex justify-between items-center mb-4">
+                    <div>
+                        <p class="text-base font-bold text-black">Encomenda #@order.idEncomenda</p>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="w-4 h-4 rounded-full" style="background-color: @GetStatusColor(order.Estado_idEstado)"></span>
+                        </div>
+                        <p class="mt-2 text-base font-bold text-black">Iniciada em: @order.Data_Inicio</p>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+                            Cancelar Encomenda
+                        </button>
+
+                        <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+                            Acompanhar Encomenda
+                        </button>
+                    </div>
+                </div>
+            }
+            catch (Exception ex)
+            {
+                <p>Erro ao carregar a encomenda: @ex.Message</p>
             }
         }
-        else if (ActiveTab == 2)
-        {
-            @foreach (var order in PreparationOrders)
-            {
-                @RenderOrder(order)
-            }
-        }
-        else if (ActiveTab == 3)
-        {
-            @foreach (var order in CompletedOrders)
-            {
-                @RenderOrder(order)
-            }
-        }
+
     </div>
 </div>
 
 @code {
-    // Estado da aba ativa
     private int ActiveTab { get; set; } = 1;
+    private List<EncomendaModel> PendingOrders = new List<EncomendaModel>();
+    private List<EncomendaModel> PreparationOrders = new List<EncomendaModel>();
+    private List<EncomendaModel> CompletedOrders = new List<EncomendaModel>();
 
-    // Dados das encomendas por status
-    private List<Order> PendingOrders = new()
+    protected override async Task OnInitializedAsync()
     {
-        new Order { OrderNumber = 1, Status = "Espera", StartDate = "01/01/2025" },
-        new Order { OrderNumber = 4, Status = "Espera", StartDate = "01/01/2025" },
-        new Order { OrderNumber = 5, Status = "Espera", StartDate = "01/01/2025" },
-        new Order { OrderNumber = 6, Status = "Espera", StartDate = "01/01/2025" }
-    };
-
-    private List<Order> PreparationOrders = new()
-    {
-        new Order { OrderNumber = 2, Status = "Preparação", StartDate = "02/01/2025" }
-    };
-
-    private List<Order> CompletedOrders = new()
-    {
-        new Order { OrderNumber = 3, Status = "Completa", StartDate = "03/01/2025" }
-    };
-
-    // Método para alternar abas
-    private void ChangeTab(int tabIndex)
-    {
-        ActiveTab = tabIndex;
+        await LoadOrdersAsync();
     }
 
-    // Método para renderizar uma encomenda
-    private RenderFragment RenderOrder(Order order) => builder =>
+    private async Task LoadOrdersAsync()
     {
-        builder.OpenElement(0, "div");
-        builder.AddAttribute(1, "class", "bg-gray-300 rounded-lg p-4 flex justify-between items-center mb-4");
-
-        // Informações da encomenda
-        builder.OpenElement(2, "div");
-        builder.OpenElement(3, "p");
-        builder.AddAttribute(4, "class", "text-base font-bold text-black");
-        builder.AddContent(5, $"Encomenda #{order.OrderNumber}");
-        builder.CloseElement(); // p
-
-        builder.OpenElement(6, "div");
-        builder.AddAttribute(7, "class", "flex items-center gap-2 mt-2");
-        builder.OpenElement(8, "span");
-        builder.AddAttribute(9, "class", "w-4 h-4 rounded-full");
-        builder.AddAttribute(10, "style", $"background-color: {GetStatusColor(order.Status)}");
-        builder.CloseElement(); // span
-        builder.OpenElement(11, "span");
-        builder.AddAttribute(12, "class", "text-base font-bold text-black");
-        builder.AddContent(13, $"- {order.Status}");
-        builder.CloseElement(); // span
-        builder.CloseElement(); // div
-
-        builder.OpenElement(14, "p");
-        builder.AddAttribute(15, "class", "mt-2 text-base font-bold text-black");
-        builder.AddContent(16, $"Iniciada em: {order.StartDate}");
-        builder.CloseElement(); // p
-        builder.CloseElement(); // div
-
-        // Botões
-        builder.OpenElement(17, "div");
-        builder.AddAttribute(18, "class", "flex items-center gap-4");
-
-        if (order.Status == "Espera")
+        string status = ActiveTab switch
         {
-            builder.OpenElement(19, "button");
-            builder.AddAttribute(20, "class", "bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700");
-            builder.AddContent(21, "Cancelar Encomenda");
-            builder.CloseElement(); // button
-        }
+            1 => "Espera",
+            2 => "Preparação",
+            3 => "Completa",
+            _ => ""
+        };
 
-        builder.OpenElement(22, "button");
-        builder.AddAttribute(23, "class", "bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700");
-        builder.AddContent(24, "Acompanhar Encomenda");
-        builder.CloseElement(); // button
-        builder.CloseElement(); // div
+        PendingOrders = await OrderService.GetOrdersByStatusAsync(1);
+        PreparationOrders = await OrderService.GetOrdersByStatusAsync(2);
+        CompletedOrders = await OrderService.GetOrdersByStatusAsync(3);
+    }
 
-        builder.CloseElement(); // div (container da encomenda)
-    };
-
-    private string GetStatusColor(string status)
+    private IEnumerable<EncomendaModel> GetOrdersByActiveTab()
     {
-        return status switch
+        return ActiveTab switch
         {
-            "Espera" => "red",
-            "Preparação" => "yellow",
-            "Completa" => "green",
-            _ => "blue"
+            1 => PendingOrders ?? new List<EncomendaModel>(),
+            2 => PreparationOrders ?? new List<EncomendaModel>(),
+            3 => CompletedOrders ?? new List<EncomendaModel>(),
+            _ => new List<EncomendaModel>()
         };
     }
 
-    private class Order
+    private void ChangeTab(int tabIndex)
     {
-        public int OrderNumber { get; set; }
-        public string Status { get; set; }
-        public string StartDate { get; set; }
+        ActiveTab = tabIndex;
+        LoadOrdersAsync();
+    }
+
+    private string GetStatusColor(int state)
+    {
+        return state switch
+        {
+            1 => "red",
+            2 => "yellow",
+            3 => "green",
+            _ => "blue"
+        };
     }
 }

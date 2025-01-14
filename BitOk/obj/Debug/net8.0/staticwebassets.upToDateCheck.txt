@@ -1,4 +1,16 @@
 wwwroot\app.css
+wwwroot\assets\admin.png
+wwwroot\assets\client.jpg
+wwwroot\assets\imagens\pc1.jpg
+wwwroot\assets\imagens\pc10.jpg
+wwwroot\assets\imagens\pc2.jpg
+wwwroot\assets\imagens\pc3.jpg
+wwwroot\assets\imagens\pc4.jpg
+wwwroot\assets\imagens\pc5.jpg
+wwwroot\assets\imagens\pc6.jpg
+wwwroot\assets\imagens\pc7.jpg
+wwwroot\assets\imagens\pc8.jpg
+wwwroot\assets\imagens\pc9.jpg
 wwwroot\assets\logo.png
 wwwroot\bootstrap\bootstrap.min.css
 wwwroot\bootstrap\bootstrap.min.css.map

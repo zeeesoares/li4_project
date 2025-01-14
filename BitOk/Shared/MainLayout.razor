@@ -1,10 +1,11 @@
 ﻿@inherits LayoutComponentBase
+@inject AuthenticationStateProvider AuthProvider
+@inject NavigationManager NavManager
 
 <div>
-    <header>
-        <NavCliente />
-    </header>
-    <main>
-        @Body
+    <NavBar />
+    <main class="mt-16 mx-auto max-w-5xl">
+         @Body
     </main>
 </div>
+

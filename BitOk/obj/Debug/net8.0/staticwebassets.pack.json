@@ -1,23 +1,71 @@
 {
   "Files": [
     {
-      "Id": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\app.css",
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\app.css",
       "PackagePath": "staticwebassets\\app.css"
     },
     {
-      "Id": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\assets\\logo.png",
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\admin.png",
+      "PackagePath": "staticwebassets\\assets\\admin.png"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\client.jpg",
+      "PackagePath": "staticwebassets\\assets\\client.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc1.jpg",
+      "PackagePath": "staticwebassets\\assets\\imagens\\pc1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc10.jpg",
+      "PackagePath": "staticwebassets\\assets\\imagens\\pc10.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc2.jpg",
+      "PackagePath": "staticwebassets\\assets\\imagens\\pc2.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc3.jpg",
+      "PackagePath": "staticwebassets\\assets\\imagens\\pc3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc4.jpg",
+      "PackagePath": "staticwebassets\\assets\\imagens\\pc4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc5.jpg",
+      "PackagePath": "staticwebassets\\assets\\imagens\\pc5.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc6.jpg",
+      "PackagePath": "staticwebassets\\assets\\imagens\\pc6.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc7.jpg",
+      "PackagePath": "staticwebassets\\assets\\imagens\\pc7.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc8.jpg",
+      "PackagePath": "staticwebassets\\assets\\imagens\\pc8.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\imagens\\pc9.jpg",
+      "PackagePath": "staticwebassets\\assets\\imagens\\pc9.jpg"
+    },
+    {
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\assets\\logo.png",
       "PackagePath": "staticwebassets\\assets\\logo.png"
     },
     {
-      "Id": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\bootstrap\\bootstrap.min.css",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Id": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\bootstrap\\bootstrap.min.css.map",
       "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Id": "D:\\Universidade\\LI4\\Projeto\\BitOkSol\\BitOk\\wwwroot\\favicon.png",
+      "Id": "C:\\Users\\User\\Desktop\\li4_project\\BitOk\\wwwroot\\favicon.png",
       "PackagePath": "staticwebassets\\favicon.png"
     },
     {

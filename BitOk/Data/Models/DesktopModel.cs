@@ -2,11 +2,11 @@
 {
     public class DesktopModel
     {
-        public int Id { get; set; } 
+        public int idDesktop { get; set; } 
         public string Descricao { get; set; } 
-        public int CatalogoId { get; set; } 
+        public int Catalogo_idCatalogo { get; set; } 
         public decimal Preco { get; set; } 
-        public string ImagemUrl { get; set; }
+        public string Imagem_Url { get; set; }
    
     }
 }
