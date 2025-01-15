@@ -32,6 +32,7 @@ namespace BitOk
             services.AddTransient<IUserManager, UserManager>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IPecaService, PecaService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

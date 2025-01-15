@@ -2,11 +2,10 @@
 {
     public class DesktopEncomendaModel
     {
-        public int EncomendaId { get; set; }
-        public int DesktopId { get; set; }
-        public int QuantidadeProd { get; set; }
+        public int Encomenda_idEncomenda { get; set; }
+        public int Desktop_idDesktop { get; set; }
+        public int Quantidade_Prod { get; set; }
         public string Estado { get; set; }
-
         public EncomendaModel Encomenda { get; set; }
         public DesktopModel Desktop { get; set; }
 

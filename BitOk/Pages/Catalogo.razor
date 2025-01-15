@@ -4,36 +4,65 @@
 <PageTitle>Catálogo de Produtos</PageTitle>
 
 <div class="container mx-auto mt-8 min-h-screen">
-    <div class="flex flex-col lg:flex-row gap-6">
+    <div class="flex flex-col lg:flex-row gap-6 w-full">
+        <!-- Filtros -->
         <div class="w-full lg:w-1/4 bg-gray-100 p-4 rounded-lg">
             <h4 class="text-lg font-semibold mb-4">Filtros</h4>
+
+            <!-- Categoria -->
+            <div class="mb-4">
+                <label class="block text-sm font-medium text-gray-700">Categoria:</label>
+                <div class="flex flex-col space-y-2">
+                    @foreach (var category in categories)
+                    {
+                        <label>
+                            <input type="checkbox" value="@category" @onchange="(e) => ToggleCategoryFilter(category, e.Value)" />
+                            @category
+                        </label>
+                    }
+                </div>
+            </div>
+
+            <!-- Preço -->
+            <div class="mt-4">
+                <label class="block text-sm font-medium text-gray-700">Preço:</label>
+                <input type="range" min="0" max="5000" step="100" @bind="maxPrice" class="w-full" />
+                <p class="text-sm text-gray-600">Até €@maxPrice</p>
+            </div>
+
+            <!-- Botão Aplicar Filtros -->
+            <div class="mt-6">
+                <button @onclick="ApplyFilters" class="w-full px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700">
+                    Aplicar Filtros
+                </button>
+            </div>
         </div>
 
+        <!-- Produtos -->
         <div class="w-full lg:w-3/4">
             <div class="flex justify-between items-center mb-6">
                 <h4 class="text-xl font-semibold">Produtos</h4>
                 <div class="flex space-x-2">
-                    <button class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300">Novo</button>
-                    <button class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300">Preço ↑</button>
-                    <button class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300">Preço ↓</button>
+                    <button @onclick="OrderByPriceAscending" class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300">Preço ↑</button>
+                    <button @onclick="OrderByPriceDescending" class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300">Preço ↓</button>
                 </div>
             </div>
 
-            @if (products == null || products.Count == 0)
+            @if (filteredProducts == null || filteredProducts.Count == 0)
             {
                 <p>Carregando produtos...</p>
             }
             else
             {
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    @foreach (var product in products)
+                    @foreach (var product in filteredProducts)
                     {
                         <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-                            <img src="@("/" + product.Imagem_Url)" alt="@product.Descricao" class="w-75 h-80 object-cover" />
+                            <img src="@("/" + product.Imagem_Url)" alt="@product.Descricao" class="w-full h-auto" />
                             <div class="p-4">
                                 <h5 class="text-lg font-semibold">@product.Descricao</h5>
                                 <p class="text-sm text-gray-600 mt-2">Descrição</p>
-                                <p class="text-lg font-bold text-blue-600 mt-4">€@product.Preco</p>
+                                <p class="text-lg font-bold text-gray-800 mt-4">€@product.Preco</p>
                             </div>
                         </div>
                     }
@@ -44,18 +73,53 @@
 </div>
 
 @code {
-
     private List<DesktopModel> products = new List<DesktopModel>();
+    private List<DesktopModel> filteredProducts = new List<DesktopModel>();
+    private List<string> categories = new List<string> { "Gaming", "Office", "Liquid" };
+    private List<string> processors = new List<string> { "AMD", "Intel" };
+    private List<string> gpus = new List<string> { "4060 Ti", "4090", "AMD Radeon" };
+
+    private List<string> selectedCategories = new List<string>();
+    private List<string> selectedProcessors = new List<string>();
+    private List<string> selectedGpus = new List<string>();
+    private decimal maxPrice = 5000;
 
     protected override async Task OnInitializedAsync()
     {
         try
         {
             products = await productService.GetAllProducts();
+            filteredProducts = products;
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Erro ao carregar produtos: {ex.Message}");
         }
+    }
+
+    private void ToggleCategoryFilter(string category, object isChecked)
+    {
+        if ((bool)isChecked)
+            selectedCategories.Add(category);
+        else
+            selectedCategories.Remove(category);
+    }
+
+    private void ApplyFilters()
+    {
+        filteredProducts = products.Where(p =>
+            (selectedCategories.Count == 0 || selectedCategories.Contains(p.Categoria)) &&
+            p.Preco <= maxPrice
+        ).ToList();
+    }
+
+    private void OrderByPriceAscending()
+    {
+        filteredProducts = filteredProducts.OrderBy(p => p.Preco).ToList();
+    }
+
+    private void OrderByPriceDescending()
+    {
+        filteredProducts = filteredProducts.OrderByDescending(p => p.Preco).ToList();
     }
 }

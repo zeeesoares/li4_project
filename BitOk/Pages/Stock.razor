@@ -1,0 +1,228 @@
+﻿@page "/stock"
+@using BitOk.Data.Models
+@inject IPecaService PecaService
+
+<div class="p-6 bg-white">
+    <div class="flex justify-end mb-4">
+        <button class="bg-gray-700 text-white px-6 py-2 rounded-lg hover:bg-gray-800" @onclick="OpenCreateModal">
+            Criar Peça
+        </button>
+    </div>
+
+    <div class="bg-gray-200 rounded-lg p-4 mt-6">
+        <div class="grid grid-cols-3 gap-4 items-center mb-4">
+            <span class="font-bold text-gray-600">Nome</span>
+            <span class="font-bold text-gray-600 text-center">Quantidade</span>
+            <span></span>
+        </div>
+
+        @foreach (var peca in PaginatedPecas)
+        {
+            <div class="grid grid-cols-3 gap-4 items-center bg-gray-300 rounded-lg shadow-sm p-4 mb-2">
+                <span class="text-gray-800">@peca.Nome</span>
+                <input type="number" class="w-full border border-gray-300 rounded-lg px-2 py-1 text-center"
+                       value="@peca.Stock" readonly />
+
+                <button class="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800 w-auto" @onclick="() => OpenQuantityModal(peca)">
+                    Adicionar
+                </button>
+            </div>
+        }
+
+        <div class="flex justify-center mt-4 space-x-4">
+            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 flex items-center space-x-2" @onclick="GoToPreviousPage" disabled="@(!HasPreviousPage)">
+                <span>&lt;-</span>
+                <span>Previous</span>
+            </button>
+            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 flex items-center space-x-2" @onclick="GoToNextPage" disabled="@(!HasNextPage)">
+                <span>Next</span>
+                <span>-></span>
+            </button>
+        </div>
+
+    </div>
+
+
+    @if (ShowCreateModal)
+    {
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+            <div class="bg-white rounded-lg p-6 w-1/3">
+                <h2 class="text-lg font-bold text-center mb-4">Criar Nova Peça</h2>
+
+                <div class="mb-4">
+                    <div class="bg-gray-300 rounded-lg p-4">
+                        <label class="block text-gray-700 font-bold mb-2">Tipo de Peça</label>
+                        <select class="w-full border border-gray-300 rounded-lg px-3 py-2" @bind="NewPeca.Tipo">
+                            <option value="" disabled selected>Selecione um tipo de peça</option>
+                            <option value="CPU">CPU</option>
+                            <option value="Fonte Alimentação">Fonte Alimentação</option>
+                            <option value="RAM">RAM</option>
+                            <option value="Disco">Disco</option>
+                            <option value="Caixa">Caixa</option>
+                            <option value="GPU">GPU</option>
+                            <option value="MotherBoard">MotherBoard</option>
+                            <option value="Cooler">Cooler</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <div class="bg-gray-300 rounded-lg p-4">
+                        <label class="block text-gray-700 font-bold mb-2">Nome</label>
+                        <input type="text" class="w-full border border-gray-300 rounded-lg px-3 py-2" @bind="NewPeca.Nome" />
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <div class="bg-gray-300 rounded-lg p-4">
+                        <label class="block text-gray-700 font-bold mb-2">Imagem URL</label>
+                        <input type="text" class="w-full border border-gray-300 rounded-lg px-3 py-2" @bind="NewPeca.Imagem_URL" />
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-4">
+                    <button class="bg-gray-700 text-white px-6 py-2 rounded-lg hover:bg-gray-800" @onclick="CreatePeca">
+                        Criar Peça
+                    </button>
+                    <button class="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400" @onclick="CloseCreateModal">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if (ShowQuantityModal)
+    {
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+            <div class="bg-white rounded-lg p-6 w-1/3">
+                <h2 class="text-lg font-bold text-center mb-4">Adicionar Quantidade</h2>
+                <div class="mb-4">
+                    <div class="bg-gray-300 rounded-lg p-4">
+                        <label class="block text-gray-700 font-bold mb-2">Quantidade</label>
+                        <input type="number" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-center" @bind="QuantityToAdd" />
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-4">
+                    <button class="bg-gray-700 text-white px-6 py-2 rounded-lg hover:bg-gray-800" @onclick="AddQuantity">
+                        Adicionar
+                    </button>
+                    <button class="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400" @onclick="CloseQuantityModal">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private List<PecaModel> Pecas = new();
+    private PecaModel NewPeca = new();
+    private PecaModel? SelectedPeca;
+    private bool ShowCreateModal = false;
+    private bool ShowQuantityModal = false;
+    private int QuantityToAdd = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Pecas = await PecaService.GetAllPecas(); 
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao carregar peças: {ex.Message}");
+        }
+    }
+
+    private void OpenCreateModal()
+    {
+        ShowCreateModal = true;
+        NewPeca = new PecaModel();
+    }
+
+    private void CloseCreateModal()
+    {
+        ShowCreateModal = false;
+    }
+
+    private async Task CreatePeca()
+    {
+        if (NewPeca != null)
+        {
+            NewPeca.Stock = 0;
+
+            try
+            {
+                var existingPeca = Pecas.FirstOrDefault(p => p.Nome == NewPeca.Nome);
+                if (existingPeca == null)
+                {
+                    await PecaService.AddPeca(NewPeca);
+                    Pecas = await PecaService.GetAllPecas();  
+                }
+               
+                CloseCreateModal();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao criar ou atualizar peça: {ex.Message}");
+            }
+        }
+    }
+
+    private void OpenQuantityModal(PecaModel peca)
+    {
+        SelectedPeca = peca;
+        QuantityToAdd = 0;
+        ShowQuantityModal = true;
+    }
+
+    private void CloseQuantityModal()
+    {
+        ShowQuantityModal = false;
+    }
+
+    private async Task AddQuantity()
+    {
+        if (SelectedPeca != null)
+        {
+            try
+            {
+                SelectedPeca.Stock += QuantityToAdd;
+                await PecaService.UpdateQuantidade(SelectedPeca);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao atualizar a quantidade: {ex.Message}");
+            }
+        }
+
+        CloseQuantityModal();
+    }
+
+    private int currentPage = 1;
+    private int itemsPerPage = 5;
+
+    private List<PecaModel> PaginatedPecas => Pecas.Skip((currentPage - 1) * itemsPerPage).Take(itemsPerPage).ToList();
+
+    private bool HasNextPage => currentPage * itemsPerPage < Pecas.Count;
+    private bool HasPreviousPage => currentPage > 1;
+
+    private void GoToPreviousPage()
+    {
+        if (HasPreviousPage)
+        {
+            currentPage--;
+        }
+    }
+
+    private void GoToNextPage()
+    {
+        if (HasNextPage)
+        {
+            currentPage++;
+        }
+    }
+}

@@ -7,6 +7,7 @@
         public int Catalogo_idCatalogo { get; set; } 
         public decimal Preco { get; set; } 
         public string Imagem_Url { get; set; }
-   
+        public string Categoria { get; set; }
+
     }
 }

@@ -1,6 +1,8 @@
 ﻿@page "/nova-encomenda"
 @inject IOrderService OrderService
 @inject IProductService ProductService
+@inject AuthenticationStateProvider AuthProvider
+@inject IJSRuntime js
 
 <div class="flex justify-center items-center mt-4">
     <div class="text-center">
@@ -14,19 +16,19 @@
         <div class="bg-gray-300 rounded-lg p-4 flex justify-between items-center mb-4">
             <div>
                 <select class="bg-white border rounded-md p-2 mb-2"
-                        @bind="item.DesktopId"
+                        @bind="item.Desktop_idDesktop"
                         @bind:event="onchange">
                     @foreach (var desktop in Catalog)
                     {
                         <option value="@desktop.idDesktop">@desktop.Descricao</option>
                     }
                 </select>
-                <p class="text-sm text-gray-600">Preço: @(Catalog.FirstOrDefault(d => d.idDesktop == item.DesktopId)?.Preco.ToString("C") ?? "N/A")</p>
+                <p class="text-sm text-gray-600">Preço: @(Catalog.FirstOrDefault(d => d.idDesktop == item.Desktop_idDesktop)?.Preco.ToString("C") ?? "N/A")</p>
             </div>
             <div class="flex items-center gap-4">
                 <label class="text-sm font-medium">Quantidade</label>
                 <select class="bg-white border rounded-md p-2"
-                        @bind="item.QuantidadeProd">
+                        @bind="item.Quantidade_Prod">
                     @for (int i = 1; i <= 100; i++)
                     {
                         <option value="@i">@i</option>
@@ -48,7 +50,8 @@
         +
     </button>
 
-    <button class="bg-gray-800 text-white px-6 py-3 rounded-md hover:bg-gray-700 mt-4">
+    <button class="bg-gray-800 text-white px-6 py-3 rounded-md hover:bg-gray-700 mt-4"
+            @onclick="SubmitOrder">
         Realizar Encomenda
     </button>
 </div>
@@ -60,7 +63,7 @@
     protected override async Task OnInitializedAsync()
     {
         Catalog = await ProductService.GetAllProducts();
-        AddNewProduct(); // Adiciona um produto inicial
+        AddNewProduct(); 
     }
 
     private void AddNewProduct()
@@ -69,11 +72,54 @@
         {
             SelectedProducts.Add(new DesktopEncomendaModel
                 {
-                    DesktopId = Catalog.First().idDesktop,
-                    QuantidadeProd = 1,
-                    Estado = "Espera" // Estado inicial
+                    Desktop_idDesktop = Catalog.First().idDesktop,
+                    Quantidade_Prod = 1,
+                    Estado = "Espera" 
                 });
         }
+    }
+
+    private async Task SubmitOrder()
+    {
+        try
+        {
+            if (SelectedProducts.Any())
+            {
+                var newOrder = new EncomendaModel
+                    {
+                        Data_Inicio = DateTime.UtcNow,
+                        Estado_idEstado = 1,
+                        Utilizador_idUtilizador = await GetCurrentUserId(),
+                    };
+
+                var products = SelectedProducts.Select(product => new DesktopEncomendaModel
+                    {
+                        Desktop_idDesktop = product.Desktop_idDesktop,
+                        Quantidade_Prod = product.Quantidade_Prod
+                    }).ToList();
+
+                await OrderService.CreateOrderAsync(newOrder, products);
+
+                await js.InvokeVoidAsync("alert", "Encomenda realizada com sucesso!");
+
+                SelectedProducts.Clear();
+                AddNewProduct();
+            }
+            else
+            {
+                await js.InvokeVoidAsync("alert", "Adicione pelo menos um produto antes de submeter a encomenda.");
+            }
+        }
+        catch (Exception ex)
+        {
+            await js.InvokeVoidAsync("alert", $"Erro ao realizar a encomenda: {ex.Message}");
+        }
+    }
+
+    private async Task<int> GetCurrentUserId()
+    {
+        var auth = (Auth.AuthMain)AuthProvider;
+        return await auth.GetID() ?? 0;
     }
 
     private void RemoveProduct(DesktopEncomendaModel product)

@@ -1,4 +1,6 @@
 ﻿@page "/"
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IUserManager _db
 @attribute [Authorize]
 
 <PageTitle>Sobre A BitOk</PageTitle>
@@ -28,8 +30,49 @@
 </div>
 
 <div class="text-center mt-8">
-    <a href="/catalogo" class="bg-gray-800 text-white py-2 px-6 rounded-lg text-lg hover:bg-gray-800 transition-colors">
-        Faça uma encomenda
-    </a>
+    @if (role == Role.Client)
+    {
+        <a href="/nova-encomenda" class="bg-gray-800 text-white py-2 px-6 rounded-lg text-lg hover:bg-gray-800 transition-colors">
+            Faça uma encomenda
+        </a>
+    }
+    else if (role == Role.Admin)
+    {
+        <a href="/stock" class="bg-gray-800 text-white py-2 px-6 rounded-lg text-lg hover:bg-gray-800 transition-colors">
+            Gerir stock
+        </a>
+    }
 </div>
 
+@code {
+    private bool isAuthenticated;
+    private Role role;
+
+    private Data.Models.UserModel? userC;
+    private Data.Models.UserModel? userA;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var ourProvider = (Auth.AuthMain)AuthenticationStateProvider;
+        isAuthenticated = await ourProvider.IsAuthenticated();
+        string? username = await ourProvider.GetUsername();
+        string? roleString = await ourProvider.GetRole();
+
+        if (roleString != null)
+        {
+            this.role = UserModel.FromString(roleString);
+        }
+
+        if (username != null)
+        {
+            if (this.role == Role.Client)
+            {
+                userC = await _db.GetClient(username);
+            }
+            else
+            {
+                userA = await _db.GetAdmin(username);
+            }
+        }
+    }
+}

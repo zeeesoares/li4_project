@@ -42,12 +42,12 @@
 
 
 @code {
-    private string Username { get; set; } = "Usuário";
+    private string Username { get; set; } = "Utilizador";
 
     protected override async Task OnInitializedAsync()
     {
         var ourProvider = (Auth.AuthMain)AuthProvider;
-        Username = await ourProvider.GetUsername() ?? "Usuário";
+        Username = await ourProvider.GetUsername() ?? "Utilizador";
     }
 
     private async Task Logout()

@@ -1,5 +1,6 @@
 ﻿@page "/encMenu"
 @inject IOrderService OrderService
+@inject AuthenticationStateProvider AuthProvider
 
 <div class="flex justify-center items-center mt-4">
     <div class="text-center">
@@ -47,9 +48,12 @@
                     </div>
 
                     <div class="flex items-center gap-4">
-                        <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700">
-                            Cancelar Encomenda
-                        </button>
+                        @if (!IsUserAdmin())
+                        {
+                            <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700" @onclick="() => DeleteOrder(order.idEncomenda)">
+                                Cancelar Encomenda
+                            </button>
+                        }
 
                         <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700">
                             Acompanhar Encomenda
@@ -71,9 +75,18 @@
     private List<EncomendaModel> PendingOrders = new List<EncomendaModel>();
     private List<EncomendaModel> PreparationOrders = new List<EncomendaModel>();
     private List<EncomendaModel> CompletedOrders = new List<EncomendaModel>();
+    private int Id { get; set; } = 0;
+
+    private bool IsAdmin { get; set; } = false;
 
     protected override async Task OnInitializedAsync()
     {
+        var ourProvider = (Auth.AuthMain)AuthProvider;
+        Id = await ourProvider.GetID() ?? 0;
+
+        string? role = await ourProvider.GetRole();
+        IsAdmin = role == "Admin";
+
         await LoadOrdersAsync();
     }
 
@@ -87,9 +100,9 @@
             _ => ""
         };
 
-        PendingOrders = await OrderService.GetOrdersByStatusAsync(1);
-        PreparationOrders = await OrderService.GetOrdersByStatusAsync(2);
-        CompletedOrders = await OrderService.GetOrdersByStatusAsync(3);
+        PendingOrders = await OrderService.GetOrdersByStatusAsync(1, Id);
+        PreparationOrders = await OrderService.GetOrdersByStatusAsync(2, Id);
+        CompletedOrders = await OrderService.GetOrdersByStatusAsync(3, Id);
     }
 
     private IEnumerable<EncomendaModel> GetOrdersByActiveTab()
@@ -109,6 +122,13 @@
         LoadOrdersAsync();
     }
 
+    private async Task DeleteOrder(int orderID)
+    {
+        await OrderService.DeleteOrderAsync(orderID);
+        await LoadOrdersAsync();
+        StateHasChanged();
+    }
+
     private string GetStatusColor(int state)
     {
         return state switch
@@ -118,5 +138,10 @@
             3 => "green",
             _ => "blue"
         };
+    }
+
+    private bool IsUserAdmin()
+    {
+        return IsAdmin;
     }
 }

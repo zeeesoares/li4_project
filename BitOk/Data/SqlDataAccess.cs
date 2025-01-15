@@ -20,6 +20,11 @@ namespace BitOk.Data
 
         public SqlConnection Connection => _connection;
 
+        public async Task<T> ExecuteScalarAsync<T>(string sql, object parameters = null)
+        {
+            return await _connection.ExecuteScalarAsync<T>(sql, parameters);
+        }
+
         public async Task<List<T>> LoadData<T, U>(string sql, U parameters)
         {
             var data = await _connection.QueryAsync<T>(sql, parameters);

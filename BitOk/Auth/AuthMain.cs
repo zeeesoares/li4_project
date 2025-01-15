@@ -79,6 +79,21 @@ namespace BitOk.Auth
             }
         }
 
+        public async Task<int?> GetID()
+        {
+            try
+            {
+                var userSessionResult = await _storage.GetAsync<UserSession>("UserSession");
+                var userSession = userSessionResult.Success ? userSessionResult.Value : null;
+
+                return userSession?.ID;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public async Task<string?> GetUsername()
         {
             try

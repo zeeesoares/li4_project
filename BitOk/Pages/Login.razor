@@ -115,6 +115,7 @@
         var ourProvider = (Auth.AuthMain)AuthenticationStateProvider;
         await ourProvider.UpdateAuthenticationState(new Auth.UserSession
             {
+                ID = account.idUtilizador,
                 Username = account.Username,
                 Role = account.RoleString,
             });

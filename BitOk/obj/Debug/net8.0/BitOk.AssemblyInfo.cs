@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BitOk")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5aeb7d9c3d8f1f3a97e3c06a8021c73dd5ae2fb4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b61a9ef25140abc4c6ead2003772a4250236eacf")]
 [assembly: System.Reflection.AssemblyProductAttribute("BitOk")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BitOk")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
