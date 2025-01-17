@@ -9,5 +9,8 @@ namespace BitOk.Data.Services
         Task CreateOrderAsync(EncomendaModel newOrder, List<DesktopEncomendaModel> products);
         Task UpdateOrderAsync(EncomendaModel updatedOrder);
         Task DeleteOrderAsync(int orderId);
+        Task<List<DesktopModel>> GetProductsByOrderIdAsync(int orderId);
+        Task<EncomendaModel> GetOrderByIdAsync(int idEncomenda);
+        Task<List<DesktopEncomendaModel>> GetDesktopEncomendaByOrderIdAsync(int orderId);
     }
 }

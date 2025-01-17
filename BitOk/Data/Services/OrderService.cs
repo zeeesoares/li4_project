@@ -107,5 +107,111 @@ namespace BitOk.Data.Services
             var deleteOrderParameters = new { Id = orderId };
             await _sqlDataAccess.SaveData(deleteOrderQuery, deleteOrderParameters);
         }
+
+        public async Task<List<DesktopModel>> GetProductsByOrderIdAsync(int orderId)
+        {
+            string getProductIdsQuery = "SELECT Desktop_idDesktop FROM dbo.Desktop_Encomendas WHERE Encomenda_idEncomenda = @OrderId";
+            var parameters = new { OrderId = orderId };
+            var productIds = await _sqlDataAccess.LoadData<int, dynamic>(getProductIdsQuery, parameters);
+
+            if (productIds == null || !productIds.Any())
+                return new List<DesktopModel>();
+
+            string getProductDetailsQuery = "SELECT * FROM dbo.Desktop WHERE idDesktop IN @ProductIds";
+            var productDetails = await _sqlDataAccess.LoadData<DesktopModel, dynamic>(
+                getProductDetailsQuery,
+                new { ProductIds = productIds });
+
+            return productDetails;
+        }
+
+        public async Task<List<DesktopEncomendaModel>> GetDesktopEncomendaByOrderIdAsync(int orderId)
+        {
+        string query = @"
+            SELECT 
+            de.Encomenda_idEncomenda,
+            de.Desktop_idDesktop,
+            de.Quantidade_Prod,
+            COALESCE(de.Estado, 'Espera') AS Estado, 
+            e.idEncomenda,
+            e.Data_Inicio,
+            d.idDesktop,
+            d.Categoria,
+            d.Descricao,
+            d.Preco
+            FROM dbo.Desktop_Encomendas de
+            LEFT JOIN dbo.Encomenda e ON de.Encomenda_idEncomenda = e.idEncomenda
+            LEFT JOIN dbo.Desktop d ON de.Desktop_idDesktop = d.idDesktop
+            WHERE de.Encomenda_idEncomenda = @OrderId";
+
+            var parameters = new { OrderId = orderId };
+
+            var rawData = await _sqlDataAccess.LoadData<dynamic, dynamic>(query, parameters);
+
+            var result = rawData.SelectMany(item => Enumerable.Range(0, (int)item.Quantidade_Prod) 
+                .Select(_ => new DesktopEncomendaModel
+                {
+                    Encomenda_idEncomenda = item.Encomenda_idEncomenda,
+                    Desktop_idDesktop = item.Desktop_idDesktop,
+                    Quantidade_Prod = item.Quantidade_Prod,
+                    Estado = item.Estado,
+                    Encomenda = new EncomendaModel
+                    {
+                        idEncomenda = item.idEncomenda,
+                        Data_Inicio = item.Data_Inicio
+                    },
+                    Desktop = new DesktopModel
+                    {
+                        idDesktop = item.idDesktop,
+                        Categoria = item.Categoria,
+                        Descricao = item.Descricao,
+                        Preco = item.Preco
+                    }
+                })).ToList();
+
+            return result ?? new List<DesktopEncomendaModel>();
+        }
+
+        public async Task<EncomendaModel> GetOrderByIdAsync(int idEncomenda)
+        {
+            var sqlEncomenda = @"
+            SELECT 
+                e.idEncomenda, 
+                e.Data_Inicio, 
+                e.Data_Fim, 
+                e.Estado_idEstado, 
+                e.Utilizador_idUtilizador
+            FROM Encomenda e
+            WHERE e.idEncomenda = @idEncomenda";
+
+            var parameters = new { idEncomenda };
+            var encomenda = await _sqlDataAccess.LoadData<EncomendaModel, dynamic>(sqlEncomenda, parameters);
+
+            if (encomenda != null && encomenda.Any())
+            {
+                var encomendaResult = encomenda.First();
+
+                var sqlEstado = @"
+                SELECT Nome
+                FROM Estado
+                WHERE idEstado = @Estado_idEstado";
+
+                var estadoParameters = new { Estado_idEstado = encomendaResult.Estado_idEstado };
+                var estadoResult = await _sqlDataAccess.LoadData<Estado, dynamic>(sqlEstado, estadoParameters);
+
+                if (estadoResult != null && estadoResult.Any())
+                {
+                    encomendaResult.Estado = new Estado
+                    {
+                        Id = encomendaResult.Estado_idEstado,
+                        Nome = estadoResult.First().Nome
+                    };
+                }
+
+                return encomendaResult;
+            }
+
+            return null;
+        }
     }
 }
