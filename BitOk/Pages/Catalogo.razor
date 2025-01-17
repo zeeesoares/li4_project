@@ -1,15 +1,15 @@
 ﻿@page "/catalogo"
 @inject IProductService productService
+@inject AuthenticationStateProvider AuthenticationStateProvider
+@inject IUserManager _db
 
 <PageTitle>Catálogo de Produtos</PageTitle>
 
 <div class="container mx-auto mt-8 min-h-screen">
     <div class="flex flex-col lg:flex-row gap-6 w-full">
-        <!-- Filtros -->
         <div class="w-full lg:w-1/4 bg-gray-100 p-4 rounded-lg">
             <h4 class="text-lg font-semibold mb-4">Filtros</h4>
 
-            <!-- Categoria -->
             <div class="mb-4">
                 <label class="block text-sm font-medium text-gray-700">Categoria:</label>
                 <div class="flex flex-col space-y-2">
@@ -23,22 +23,27 @@
                 </div>
             </div>
 
-            <!-- Preço -->
             <div class="mt-4">
                 <label class="block text-sm font-medium text-gray-700">Preço:</label>
                 <input type="range" min="0" max="5000" step="100" @bind="maxPrice" class="w-full" />
                 <p class="text-sm text-gray-600">Até €@maxPrice</p>
             </div>
 
-            <!-- Botão Aplicar Filtros -->
             <div class="mt-6">
                 <button @onclick="ApplyFilters" class="w-full px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-gray-700">
                     Aplicar Filtros
                 </button>
             </div>
-        </div>
 
-        <!-- Produtos -->
+            @if (isAdmin)
+            {
+                <div class="mt-6">
+                    <a href="/criarProduto" class="w-full block px-4 py-2 text-center bg-gray-800 text-white rounded-md hover:bg-gray-700">
+                        Criar Produto
+                    </a>
+                </div>
+            }
+        </div>
         <div class="w-full lg:w-3/4">
             <div class="flex justify-between items-center mb-6">
                 <h4 class="text-xl font-semibold">Produtos</h4>
@@ -84,10 +89,42 @@
     private List<string> selectedGpus = new List<string>();
     private decimal maxPrice = 5000;
 
+    private bool isAuthenticated;
+    private bool isAdmin = false;
+
+    private Data.Models.UserModel? userC;
+    private Data.Models.UserModel? userA;
+
+    private bool isLoading = true;
+
     protected override async Task OnInitializedAsync()
     {
+        isLoading = true;
+
         try
         {
+            var ourProvider = (Auth.AuthMain)AuthenticationStateProvider;
+            isAuthenticated = await ourProvider.IsAuthenticated();
+            string? username = await ourProvider.GetUsername();
+            string? role = await ourProvider.GetRole();
+
+            if (role != null && role == Role.Admin.ToString())
+            {
+                isAdmin = true;
+            }
+
+            if (username != null)
+            {
+                if (isAdmin)
+                {
+                    userA = await _db.GetAdmin(username);
+                }
+                else
+                {
+                    userC = await _db.GetClient(username);
+                }
+            }
+
             products = await productService.GetAllProducts();
             filteredProducts = products;
         }
@@ -95,8 +132,11 @@
         {
             Console.WriteLine($"Erro ao carregar produtos: {ex.Message}");
         }
+        finally
+        {
+            isLoading = false;
+        }
     }
-
     private void ToggleCategoryFilter(string category, object isChecked)
     {
         if ((bool)isChecked)

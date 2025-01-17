@@ -1,0 +1,119 @@
+﻿@page "/criarProduto"
+@inject NavigationManager NavigationManager
+@inject IPecaService PecaService
+@inject IProductService ProductService
+
+@using Microsoft.AspNetCore.Components.Routing
+
+<div class="container mx-auto mt-8 min-h-screen">
+    <div class="grid grid-cols-2 gap-4">
+        @foreach (var tipo in pecasPorTipo.Keys)
+        {
+            <div class="w-full bg-gray-300 p-4 rounded-lg shadow-md">
+                <label class="block text-sm font-bold text-black">@tipo:</label>
+                <select class="w-full mt-2 px-4 py-2 border border-gray-500 rounded-md bg-white text-black focus:ring focus:ring-indigo-500" @bind="selecionadas[tipo]">
+                    <option value="">Selecione uma opção</option>
+                    @foreach (var peca in pecasPorTipo[tipo])
+                    {
+                        <option value="@peca.idPeca">@peca.Nome</option>
+                    }
+                </select>
+            </div>
+        }
+
+        <div class="w-full bg-gray-300 p-4 rounded-lg shadow-md">
+            <label class="block text-sm font-bold text-black">Descrição:</label>
+            <input type="text" @bind="descricao" class="w-full mt-2 px-4 py-2 border border-gray-500 rounded-md bg-gray-300 text-black focus:ring focus:ring-indigo-500" />
+        </div>
+
+        <div class="w-full bg-gray-300 p-4 rounded-lg shadow-md">
+            <label class="block text-sm font-bold text-black">Imagem (URL):</label>
+            <input type="text" @bind="imagemUrl" class="w-full mt-2 px-4 py-2 border border-gray-500 rounded-md bg-gray-300 text-black focus:ring focus:ring-indigo-500" />
+        </div>
+    </div>
+
+    <div class="w-full bg-gray-300 p-4 mt-4 rounded-lg shadow-md">
+        <label class="block text-sm font-bold text-black">Categoria:</label>
+        <select @bind="categoria" class="w-full mt-2 px-4 py-2 border border-gray-500 rounded-md bg-white text-black focus:ring focus:ring-indigo-500">
+            <option value="">Selecione uma Categoria</option>
+            @foreach (var cat in categories)
+            {
+                <option value="@cat">@cat</option>
+            }
+        </select>
+    </div>
+
+    <div class="w-full bg-gray-300 p-4 mt-4 rounded-lg shadow-md">
+        <label class="block text-sm font-bold text-black">Preço (€):</label>
+        <input type="number" @bind="preco" class="w-full mt-2 px-4 py-2 border border-gray-500 rounded-md bg-gray-300 black focus:ring focus:ring-indigo-500" />
+    </div>
+
+    <div class="mt-8 text-center flex justify-center gap-4">
+        <button class="px-6 py-2 bg-gray-800 text-white font-bold rounded-md hover:bg-gray-700" @onclick="CriarProdutoDB">
+            Criar Produto
+        </button>
+
+        <NavLink href="/catalogo" class="px-6 py-2 bg-gray-800 text-white font-bold rounded-md hover:bg-gray-700">
+            Cancelar
+        </NavLink>
+    </div>
+</div>
+
+@code {
+    private Dictionary<string, List<PecaModel>> pecasPorTipo = new();
+    private Dictionary<string, string> selecionadas = new();
+    private string descricao = string.Empty;
+    private string imagemUrl = string.Empty;
+    private decimal preco;
+    private string categoria = string.Empty; 
+    private List<string> categories = new List<string> { "Gaming", "Office", "Liquid" };
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var pecas = await PecaService.GetAllPecas();
+
+            pecasPorTipo = pecas
+                .GroupBy(p => p.Tipo)
+                .ToDictionary(g => g.Key, g => g.ToList());
+
+            foreach (var tipo in pecasPorTipo.Keys)
+            {
+                selecionadas[tipo] = string.Empty;
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao carregar peças: {ex.Message}");
+        }
+    }
+
+    private async Task CriarProdutoDB()
+    {
+        try
+        {
+            if (string.IsNullOrEmpty(descricao) || string.IsNullOrEmpty(imagemUrl) || preco <= 0 || string.IsNullOrEmpty(categoria))
+            {
+                Console.WriteLine("Todos os campos precisam ser preenchidos!");
+                return;
+            }
+
+            var novoProduto = new DesktopModel
+                {
+                    Descricao = descricao,
+                    Imagem_Url = imagemUrl,
+                    Preco = preco,
+                    Categoria = categoria,
+                    Catalogo_idCatalogo = 1 
+                };
+
+            await ProductService.AddProduct(novoProduto, selecionadas);
+            NavigationManager.NavigateTo("/catalogo");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao criar produto: {ex.Message}");
+        }
+    }
+}
