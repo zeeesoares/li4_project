@@ -31,6 +31,17 @@ namespace BitOk.Data.Services
             return result;
         }
 
+        public async Task<List<EncomendaModel>> GetOrdersByStatusAsyncAdmin(int orderId)
+        {
+            string query = "SELECT * FROM Encomenda WHERE Estado_idEstado = @EstadoId";
+
+            var parameters = new { EstadoId = orderId};
+
+            var result = await _sqlDataAccess.LoadData<EncomendaModel, object>(query, parameters);
+            return result;
+        }
+
+
 
         public async Task CreateOrderAsync(EncomendaModel newOrder, List<DesktopEncomendaModel> products)
         {

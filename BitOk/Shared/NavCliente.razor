@@ -9,7 +9,7 @@
 @inject AuthenticationStateProvider AuthProvider
 
 
-<div class="mx-auto flex max-w-full items-center justify-between border-b-2 border-black pb-2 px-6" style="height: 80px;">
+<div class="mx-auto flex max-w-full items-center justify-between border-b-2 border-black pb-2 px-20">
     <div class="flex">
         <a href="/" class="flex items-center">
             <img class="h-20 w-auto" src="assets/logo.png" alt="Logo">
@@ -31,9 +31,9 @@
         </NavLink>
     </div>
     <div class="flex items-center space-x-5">
-        <img class="h-10 w-10 rounded-full" src="assets/client.jpg" alt="Avatar do usuário">
+        <img class="h-12 w-12 rounded-full" src="assets/client.jpg" alt="Avatar do utilizador">
         <div class="flex flex-col">
-            <p class="text-black font-bold font-sans text-xs">@Username</p>
+            <p class="text-black font-bold font-sans text-s">@Username</p>
             <p class="cursor-pointer hover:underline text-black font-bold font-sans text-xs" @onclick="Logout">Sair</p>
         </div>
     </div>

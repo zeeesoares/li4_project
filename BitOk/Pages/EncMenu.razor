@@ -1,6 +1,7 @@
 ﻿@page "/encMenu"
 @inject IOrderService OrderService
 @inject AuthenticationStateProvider AuthProvider
+@inject ISnackbar Snackbar
 
 <div class="flex justify-center items-center mt-4">
     <div class="text-center">
@@ -100,9 +101,18 @@
             _ => ""
         };
 
-        PendingOrders = await OrderService.GetOrdersByStatusAsync(1, Id);
-        PreparationOrders = await OrderService.GetOrdersByStatusAsync(2, Id);
-        CompletedOrders = await OrderService.GetOrdersByStatusAsync(3, Id);
+
+        @if (IsUserAdmin())
+        {
+            PendingOrders = await OrderService.GetOrdersByStatusAsyncAdmin(1);
+            PreparationOrders = await OrderService.GetOrdersByStatusAsyncAdmin(2);
+            CompletedOrders = await OrderService.GetOrdersByStatusAsyncAdmin(3);
+        }
+        else  {
+            PendingOrders = await OrderService.GetOrdersByStatusAsync(1, Id);
+            PreparationOrders = await OrderService.GetOrdersByStatusAsync(2, Id);
+            CompletedOrders = await OrderService.GetOrdersByStatusAsync(3, Id);
+        }
     }
 
     private IEnumerable<EncomendaModel> GetOrdersByActiveTab()
@@ -125,6 +135,7 @@
     private async Task DeleteOrder(int orderID)
     {
         await OrderService.DeleteOrderAsync(orderID);
+        Snackbar.Add("Encomenda cancelada com sucesso.", Severity.Success);
         await LoadOrdersAsync();
         StateHasChanged();
     }

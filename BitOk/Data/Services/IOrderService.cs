@@ -6,6 +6,7 @@ namespace BitOk.Data.Services
     {
         Task<List<EncomendaModel>> GetAllOrdersAsync();
         Task<List<EncomendaModel>> GetOrdersByStatusAsync(int orderId, int userId);
+        Task<List<EncomendaModel>> GetOrdersByStatusAsyncAdmin(int orderId);
         Task CreateOrderAsync(EncomendaModel newOrder, List<DesktopEncomendaModel> products);
         Task UpdateOrderAsync(EncomendaModel updatedOrder);
         Task DeleteOrderAsync(int orderId);

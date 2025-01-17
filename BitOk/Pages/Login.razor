@@ -11,6 +11,7 @@
 @inject IJSRuntime js
 @inject NavigationManager NavManager
 @inject AuthenticationStateProvider AuthenticationStateProvider
+@inject ISnackbar snackbar
 
 <div class="flex flex-col justify-center items-center h-screen">
     <div class="flex flex-col space-y-2 items-center justify-center mb-6">
@@ -28,7 +29,7 @@
                 <InputText @bind-Value="_loginModel.Username" id="username"
                            class="border border-solid rounded-xl w-full py-3 px-3 text-gray-700 mb-2"
                            placeholder="Username" style="height: 50px;" />
-                <div class="pl-3 text-pcs-red">
+                <div class="pl-3 text-pcs-red text-red-500">
                     <ValidationMessage For="@(() => _loginModel.Username)" />
                 </div>
             </div>
@@ -38,6 +39,9 @@
                 <InputText @bind-Value="_loginModel.Password" id="password"
                            class="border border-solid rounded-xl w-full py-3 px-3 text-gray-700"
                            type="@inputType" placeholder="Password" style="height: 50px;" />
+                <div class="pl-3 text-pcs-red text-red-500">
+                    <ValidationMessage For="@(() => _loginModel.Password)" />
+                </div>
                 <svg @onclick="TogglePasswordVisibility"
                      class="h-4 w-4 absolute right-3 top-1/2 translate-y-1/2 cursor-pointer"
                      viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -102,13 +106,13 @@
 
         if (account == null)
         {
-            await js.InvokeVoidAsync("alert", "Username não encontrado.");
+            snackbar.Add("Username não encontrado.", Severity.Error);
             return;
         }
 
         if (account.Password != _loginModel.Password)
         {
-            await js.InvokeVoidAsync("alert", "Username ou password incorretos.");
+            snackbar.Add("Username ou password incorretos.", Severity.Error);
             return;
         }
 
@@ -122,5 +126,4 @@
 
         NavManager.NavigateTo("/", true);
     }
-
 }
