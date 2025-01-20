@@ -1,6 +1,8 @@
 ﻿@page "/encMenu"
 @inject IOrderService OrderService
 @inject AuthenticationStateProvider AuthProvider
+@inject ISnackbar Snackbar
+@inject NavigationManager NavigationManager
 
 <div class="flex justify-center items-center mt-4">
     <div class="text-center">
@@ -55,7 +57,8 @@
                             </button>
                         }
 
-                        <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+                        <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700"
+                                @onclick="() => NavigateToOrder(order.idEncomenda)">
                             Acompanhar Encomenda
                         </button>
                     </div>
@@ -100,9 +103,18 @@
             _ => ""
         };
 
-        PendingOrders = await OrderService.GetOrdersByStatusAsync(1, Id);
-        PreparationOrders = await OrderService.GetOrdersByStatusAsync(2, Id);
-        CompletedOrders = await OrderService.GetOrdersByStatusAsync(3, Id);
+
+        @if (IsUserAdmin())
+        {
+            PendingOrders = await OrderService.GetOrdersByStatusAsyncAdmin(1);
+            PreparationOrders = await OrderService.GetOrdersByStatusAsyncAdmin(2);
+            CompletedOrders = await OrderService.GetOrdersByStatusAsyncAdmin(3);
+        }
+        else  {
+            PendingOrders = await OrderService.GetOrdersByStatusAsync(1, Id);
+            PreparationOrders = await OrderService.GetOrdersByStatusAsync(2, Id);
+            CompletedOrders = await OrderService.GetOrdersByStatusAsync(3, Id);
+        }
     }
 
     private IEnumerable<EncomendaModel> GetOrdersByActiveTab()
@@ -125,6 +137,7 @@
     private async Task DeleteOrder(int orderID)
     {
         await OrderService.DeleteOrderAsync(orderID);
+        Snackbar.Add("Encomenda cancelada com sucesso.", Severity.Success);
         await LoadOrdersAsync();
         StateHasChanged();
     }
@@ -143,5 +156,10 @@
     private bool IsUserAdmin()
     {
         return IsAdmin;
+    }
+
+    private void NavigateToOrder(int orderId)
+    {
+        NavigationManager.NavigateTo($"/acompanharEncomenda/{orderId}");
     }
 }

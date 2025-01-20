@@ -6,8 +6,8 @@
         public int Desktop_idDesktop { get; set; }
         public int Quantidade_Prod { get; set; }
         public string Estado { get; set; }
-        public EncomendaModel Encomenda { get; set; }
-        public DesktopModel Desktop { get; set; }
+        public EncomendaModel? Encomenda { get; set; }
+        public DesktopModel? Desktop { get; set; }
 
         public string GetCurrentPieceName()
         {
@@ -27,13 +27,13 @@
         {
             return Estado switch
             {
-                "Espera" => "yellow-500",
-                "Montar Caixa" => "yellow-500",
-                "Montar Motherboard" => "yellow-500",
-                "Montar Componentes" => "yellow-500",
-                "Cable Management" => "yellow-500",
-                "Pronto" => "green-500",
-                _ => "red-500"
+                "Espera" => "yellow",
+                "Montar Caixa" => "yellow",
+                "Montar Motherboard" => "yellow",
+                "Montar Componentes" => "yellow",
+                "Cable Management" => "yellow",
+                "Pronto" => "green",
+                _ => "red"
             };
         }
     }

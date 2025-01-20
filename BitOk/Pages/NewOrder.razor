@@ -2,7 +2,7 @@
 @inject IOrderService OrderService
 @inject IProductService ProductService
 @inject AuthenticationStateProvider AuthProvider
-@inject IJSRuntime js
+@inject ISnackbar Snackbar
 
 <div class="flex justify-center items-center mt-4">
     <div class="text-center">
@@ -15,14 +15,14 @@
     {
         <div class="bg-gray-300 rounded-lg p-4 flex justify-between items-center mb-4">
             <div>
-                <select class="bg-white border rounded-md p-2 mb-2"
-                        @bind="item.Desktop_idDesktop"
-                        @bind:event="onchange">
-                    @foreach (var desktop in Catalog)
+                <select class="bg-white border rounded-md p-2 mb-2" @bind="item.Desktop_idDesktop" @bind:event="onchange">
+                    @foreach (var desktop in Catalog.Where(d => !SelectedProducts.Any(sp => sp.Desktop_idDesktop == d.idDesktop) || d.idDesktop == item.Desktop_idDesktop))
                     {
                         <option value="@desktop.idDesktop">@desktop.Descricao</option>
                     }
                 </select>
+
+
                 <p class="text-sm text-gray-600">Preço: @(Catalog.FirstOrDefault(d => d.idDesktop == item.Desktop_idDesktop)?.Preco.ToString("C") ?? "N/A")</p>
             </div>
             <div class="flex items-center gap-4">
@@ -40,7 +40,6 @@
                         @onclick="@(() => RemoveProduct(item))">
                     🗑
                 </button>
-
             </div>
         </div>
     }
@@ -63,19 +62,24 @@
     protected override async Task OnInitializedAsync()
     {
         Catalog = await ProductService.GetAllProducts();
-        AddNewProduct(); 
     }
 
     private void AddNewProduct()
     {
-        if (Catalog.Any())
+        var availableProducts = Catalog.Where(d => !SelectedProducts.Any(sp => sp.Desktop_idDesktop == d.idDesktop)).ToList();
+
+        if (availableProducts.Any())
         {
             SelectedProducts.Add(new DesktopEncomendaModel
                 {
-                    Desktop_idDesktop = Catalog.First().idDesktop,
+                    Desktop_idDesktop = availableProducts.First().idDesktop,
                     Quantidade_Prod = 1,
-                    Estado = "Espera" 
+                    Estado = "Espera"
                 });
+        }
+        else
+        {
+            Snackbar.Add("Não há mais produtos disponíveis para adicionar.", Severity.Warning);
         }
     }
 
@@ -100,19 +104,18 @@
 
                 await OrderService.CreateOrderAsync(newOrder, products);
 
-                await js.InvokeVoidAsync("alert", "Encomenda realizada com sucesso!");
+                Snackbar.Add("Encomenda realizada com sucesso!", Severity.Success);
 
                 SelectedProducts.Clear();
-                AddNewProduct();
             }
             else
             {
-                await js.InvokeVoidAsync("alert", "Adicione pelo menos um produto antes de submeter a encomenda.");
+                Snackbar.Add("Adicione pelo menos um produto antes de submeter a encomenda.", Severity.Warning);
             }
         }
         catch (Exception ex)
         {
-            await js.InvokeVoidAsync("alert", $"Erro ao realizar a encomenda: {ex.Message}");
+            Snackbar.Add($"Erro ao realizar a encomenda: {ex.Message}", Severity.Error);
         }
     }
 
@@ -126,5 +129,4 @@
     {
         SelectedProducts.Remove(product);
     }
-
 }

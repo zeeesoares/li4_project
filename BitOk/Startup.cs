@@ -8,6 +8,8 @@ using BitOk.Data;
 using BitOk.Auth;
 using BitOk.Data.Services;
 using Microsoft.AspNetCore.Components.Authorization;
+using MudBlazor.Services;
+using MudBlazor;
 
 namespace BitOk
 {
@@ -22,6 +24,18 @@ namespace BitOk
 
         public void ConfigureServices(IServiceCollection services)
         {
+
+            services.AddMudServices(config =>
+            {
+                config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.BottomCenter; 
+                config.SnackbarConfiguration.HideTransitionDuration = 200; 
+                config.SnackbarConfiguration.ShowTransitionDuration = 200; 
+                config.SnackbarConfiguration.VisibleStateDuration = 1800;
+                config.SnackbarConfiguration.MaxDisplayedSnackbars = 5; 
+                config.SnackbarConfiguration.SnackbarVariant = Variant.Filled; 
+            });
+
+
             services.AddRazorPages();
             services.AddServerSideBlazor();
 
