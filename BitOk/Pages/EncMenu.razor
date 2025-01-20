@@ -2,6 +2,7 @@
 @inject IOrderService OrderService
 @inject AuthenticationStateProvider AuthProvider
 @inject ISnackbar Snackbar
+@inject NavigationManager NavigationManager
 
 <div class="flex justify-center items-center mt-4">
     <div class="text-center">
@@ -56,7 +57,8 @@
                             </button>
                         }
 
-                        <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+                        <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700"
+                                @onclick="() => NavigateToOrder(order.idEncomenda)">
                             Acompanhar Encomenda
                         </button>
                     </div>
@@ -154,5 +156,10 @@
     private bool IsUserAdmin()
     {
         return IsAdmin;
+    }
+
+    private void NavigateToOrder(int orderId)
+    {
+        NavigationManager.NavigateTo($"/acompanharEncomenda/{orderId}");
     }
 }
