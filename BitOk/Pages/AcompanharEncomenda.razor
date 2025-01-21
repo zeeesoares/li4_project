@@ -1,6 +1,7 @@
-﻿@page "/acompanharEncomenda/{idEncomenda:int}"
+﻿@page "/acompanharEncomenda/encomenda{idEncomenda:int}"
 @inject IOrderService OrderService
 @inject AuthenticationStateProvider AuthProvider
+@inject NavigationManager NavigationManager
 
 <div class="bg-gray-200 rounded-lg p-4 flex flex-col gap-4 max-w-5xl mx-auto">
     @if (Encomenda != null)
@@ -28,7 +29,8 @@
                                 <span class="text-sm text-black">- @produtoEncomenda.produto.Estado</span>
                             </div>
                         </div>
-                        <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700">
+                        <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700"
+                                @onclick="() => NavigateToProduct(produtoEncomenda.produto.Desktop_idDesktop)">
                             Visualizar Montagem de Produto
                         </button>
                     </div>
@@ -66,5 +68,11 @@
             Encomenda.Utilizador_idUtilizador = Id;
             ProdutosEncomenda = await OrderService.GetDesktopEncomendaByOrderIdAsync(idEncomenda);
         }
+    }
+
+
+    private void NavigateToProduct(int desktopId)
+    {
+        NavigationManager.NavigateTo($"/acompanharEncomenda/encomenda{idEncomenda}/desktop{desktopId}");
     }
 }

@@ -21,21 +21,21 @@ namespace BitOk.Data.Services
             return await _sqlDataAccess.LoadData<EncomendaModel, object>(query, new { });
         }
 
-        public async Task<List<EncomendaModel>> GetOrdersByStatusAsync(int orderId, int userId)
+        public async Task<List<EncomendaModel>> GetOrdersByStatusAsync(int estadoId, int userId)
         {
             string query = "SELECT * FROM Encomenda WHERE Estado_idEstado = @EstadoId AND Utilizador_idUtilizador = @UtilizadorId";
 
-            var parameters = new { EstadoId = orderId, UtilizadorId = userId };
+            var parameters = new { EstadoId = estadoId, UtilizadorId = userId };
 
             var result = await _sqlDataAccess.LoadData<EncomendaModel, object>(query, parameters);
             return result;
         }
 
-        public async Task<List<EncomendaModel>> GetOrdersByStatusAsyncAdmin(int orderId)
+        public async Task<List<EncomendaModel>> GetOrdersByStatusAsyncAdmin(int estadoId)
         {
             string query = "SELECT * FROM Encomenda WHERE Estado_idEstado = @EstadoId";
 
-            var parameters = new { EstadoId = orderId};
+            var parameters = new { EstadoId = estadoId};
 
             var result = await _sqlDataAccess.LoadData<EncomendaModel, object>(query, parameters);
             return result;
@@ -99,8 +99,8 @@ namespace BitOk.Data.Services
                              WHERE idEncomenda = @Id";
             var parameters = new
             {
-                updatedOrder.Data_Inicio,
-                updatedOrder.Data_Fim,
+                DataInicio = updatedOrder.Data_Inicio,
+                DataFim = updatedOrder.Data_Fim,
                 EstadoId = updatedOrder.Estado_idEstado,
                 UtilizadorId = updatedOrder.Utilizador_idUtilizador,
                 Id = updatedOrder.idEncomenda
@@ -164,7 +164,7 @@ namespace BitOk.Data.Services
                 {
                     Encomenda_idEncomenda = item.Encomenda_idEncomenda,
                     Desktop_idDesktop = item.Desktop_idDesktop,
-                    Quantidade_Prod = item.Quantidade_Prod,
+                    Quantidade_Prod = 1,
                     Estado = item.Estado,
                     Encomenda = new EncomendaModel
                     {
@@ -182,6 +182,21 @@ namespace BitOk.Data.Services
 
             return result ?? new List<DesktopEncomendaModel>();
         }
+
+        public async Task<DesktopEncomendaModel> GetDesktopEncomendaByIdAsync(int desktopId, int encomendaId)
+        {
+            string query = @"
+                SELECT 
+                *
+                FROM dbo.Desktop_Encomendas
+                WHERE Desktop_idDesktop = @DesktopId AND Encomenda_idEncomenda = @EncomendaId";
+
+            var parameters = new { DesktopId = desktopId, EncomendaId = encomendaId };
+
+            var result = await _sqlDataAccess.LoadData<DesktopEncomendaModel, object>(query, parameters).ContinueWith(task => task.Result.FirstOrDefault());
+            return result;
+        }
+
 
         public async Task<EncomendaModel> GetOrderByIdAsync(int idEncomenda)
         {
@@ -223,6 +238,27 @@ namespace BitOk.Data.Services
             }
 
             return null;
+        }
+
+        public async Task<bool> UpdateProductStateAsync(int encomendaId, int desktopId, string novoEstado)
+        {
+            string query = @"
+                UPDATE dbo.Desktop_Encomendas
+                SET Estado = @NovoEstado
+                WHERE Encomenda_idEncomenda = @EncomendaId
+                  AND Desktop_idDesktop = @DesktopId";
+
+            var parameters = new { EncomendaId = encomendaId, DesktopId = desktopId, NovoEstado = novoEstado };
+
+            try
+            {
+                await _sqlDataAccess.SaveData(query, parameters);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }

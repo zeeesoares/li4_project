@@ -50,7 +50,7 @@
                     </div>
 
                     <div class="flex items-center gap-4">
-                        @if (!IsUserAdmin())
+                        @if (!IsUserAdmin() && order.Estado_idEstado == 1)
                         {
                             <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700" @onclick="() => DeleteOrder(order.idEncomenda)">
                                 Cancelar Encomenda
@@ -160,6 +160,6 @@
 
     private void NavigateToOrder(int orderId)
     {
-        NavigationManager.NavigateTo($"/acompanharEncomenda/{orderId}");
+        NavigationManager.NavigateTo($"/acompanharEncomenda/encomenda{orderId}");
     }
 }

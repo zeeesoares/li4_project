@@ -47,6 +47,8 @@ namespace BitOk
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IPecaService, PecaService>();
+
+            services.AddHostedService<OrderUpdateService>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
