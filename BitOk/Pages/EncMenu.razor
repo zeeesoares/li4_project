@@ -1,4 +1,7 @@
 ﻿@page "/encMenu"
+
+@using Microsoft.AspNetCore.SignalR.Client
+
 @inject IOrderService OrderService
 @inject AuthenticationStateProvider AuthProvider
 @inject ISnackbar Snackbar
@@ -57,6 +60,13 @@
                             </button>
                         }
 
+                        @if (IsUserAdmin() && order.Estado_idEstado == 1)
+                        {
+                            <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700" @onclick="() => NavigateToVerifyStock(order.idEncomenda)">
+                                Verificar e Recolher Stock
+                            </button>
+                        }
+
                         <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700"
                                 @onclick="() => NavigateToOrder(order.idEncomenda)">
                             Acompanhar Encomenda
@@ -79,6 +89,7 @@
     private List<EncomendaModel> PreparationOrders = new List<EncomendaModel>();
     private List<EncomendaModel> CompletedOrders = new List<EncomendaModel>();
     private int Id { get; set; } = 0;
+    private HubConnection? HubConnection;
 
     private bool IsAdmin { get; set; } = false;
 
@@ -91,6 +102,19 @@
         IsAdmin = role == "Admin";
 
         await LoadOrdersAsync();
+
+        HubConnection = new HubConnectionBuilder()
+            .WithUrl(NavigationManager.ToAbsoluteUri("/myhub"))
+            .Build();
+
+        HubConnection.On<int, int>("ReceiveUpdate", async (orderId, newState) =>
+        {
+            Snackbar.Add($"Encomenda #{orderId} atualizada para estado: {newState}", Severity.Info);
+            await LoadOrdersAsync();
+            StateHasChanged();
+        });
+
+        await HubConnection.StartAsync();
     }
 
     private async Task LoadOrdersAsync()
@@ -110,7 +134,8 @@
             PreparationOrders = await OrderService.GetOrdersByStatusAsyncAdmin(2);
             CompletedOrders = await OrderService.GetOrdersByStatusAsyncAdmin(3);
         }
-        else  {
+        else
+        {
             PendingOrders = await OrderService.GetOrdersByStatusAsync(1, Id);
             PreparationOrders = await OrderService.GetOrdersByStatusAsync(2, Id);
             CompletedOrders = await OrderService.GetOrdersByStatusAsync(3, Id);
@@ -161,5 +186,18 @@
     private void NavigateToOrder(int orderId)
     {
         NavigationManager.NavigateTo($"/acompanharEncomenda/encomenda{orderId}");
+    }
+
+    private void NavigateToVerifyStock(int orderId)
+    {
+        NavigationManager.NavigateTo($"/verificarStock/encomenda{orderId}");
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (HubConnection is not null)
+        {
+            await HubConnection.DisposeAsync();
+        }
     }
 }

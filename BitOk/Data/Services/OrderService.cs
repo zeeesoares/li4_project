@@ -260,5 +260,29 @@ namespace BitOk.Data.Services
                 return false;
             }
         }
+
+        public async Task<List<PecaModel>> GetPecasWithoutStockAsync(int encomendaId)
+        {
+            string query = @"
+                WITH QuantidadeCalc AS (
+                    SELECT 
+                        p.idPeca, 
+                        p.Nome, 
+                        p.Stock, 
+                        (pd.Quantidade * de.Quantidade) AS QuantidadeNecessaria
+                    FROM Pecas_Desktop pd
+                    JOIN Desktop_Encomendas de ON pd.Desktop_idDesktop = de.Desktop_idDesktop
+                    JOIN Peca p ON pd.Peca_idPeca = p.idPeca
+                    WHERE de.Encomenda_idEncomenda = @EncomendaId
+                )
+                SELECT idPeca, Nome, Stock, QuantidadeNecessaria
+                FROM QuantidadeCalc
+                WHERE Stock < QuantidadeNecessaria";
+
+            var parameters = new { EncomendaId = encomendaId };
+
+            var result = await _sqlDataAccess.LoadData<PecaModel, object>(query, parameters);
+            return result;
+        }
     }
 }

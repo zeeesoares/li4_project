@@ -1,18 +1,17 @@
-﻿using Microsoft.Extensions.Hosting;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using BitOk.Hubs;
+using Microsoft.AspNetCore.SignalR;
 
 namespace BitOk.Data.Services
 {
     public class OrderUpdateService : BackgroundService
     {
         private readonly IOrderService _orderService;
+        private readonly IHubContext<MyHub> _hubContext;
 
-        public OrderUpdateService(IOrderService orderService)
+        public OrderUpdateService(IOrderService orderService, IHubContext<MyHub> hubContext)
         {
             _orderService = orderService;
+            _hubContext = hubContext;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -32,7 +31,16 @@ namespace BitOk.Data.Services
                             if (product.Estado != "Pronto")
                             {
                                 var nextState = GetNextState(product.Estado);
-                                await _orderService.UpdateProductStateAsync(product.Encomenda_idEncomenda, product.Desktop_idDesktop, nextState);
+
+                                await _orderService.UpdateProductStateAsync(
+                                    product.Encomenda_idEncomenda,
+                                    product.Desktop_idDesktop,
+                                    nextState);
+
+                                await _hubContext.Clients.All.SendAsync(
+                                    "ReceiveDUpdate",
+                                    $"Produto {product.Desktop_idDesktop} avançou para o estado '{nextState}'");
+
                                 await Task.Delay(5000, stoppingToken);
                             }
                         }
@@ -42,6 +50,13 @@ namespace BitOk.Data.Services
                             order.Estado_idEstado = 3;
                             order.Data_Fim = DateTime.Now;
                             await _orderService.UpdateOrderAsync(order);
+
+                            await _hubContext.Clients.All.SendAsync(
+                              "ReceiveUpdate",
+                              order.idEncomenda, 
+                              order.Estado_idEstado 
+                          );
+
                         }
                     }
                 }
