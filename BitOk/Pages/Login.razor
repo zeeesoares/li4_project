@@ -5,7 +5,8 @@
 @using System.Threading.Tasks
 @using Microsoft.AspNetCore.Components
 @using System.ComponentModel.DataAnnotations
-@using System.Security.Claims;
+@using System.Security.Claims
+@using BCrypt
 
 @inject Data.Services.IUserManager _db
 @inject IJSRuntime js
@@ -110,7 +111,7 @@
             return;
         }
 
-        if (account.Password != _loginModel.Password)
+        if (VerifyPassword(_loginModel.Password, account.Password) == false)
         {
             snackbar.Add("Username ou password incorretos.", Severity.Error);
             return;
@@ -122,8 +123,15 @@
                 ID = account.idUtilizador,
                 Username = account.Username,
                 Role = account.RoleString,
+                PasswordHash = account.Password
             });
 
         NavManager.NavigateTo("/", true);
     }
+
+    public static bool VerifyPassword(string password, string storedHash)
+    {
+        return BCrypt.Net.BCrypt.Verify(password, storedHash);
+    }
+
 }
