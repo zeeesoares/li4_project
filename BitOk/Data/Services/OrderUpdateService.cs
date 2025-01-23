@@ -54,13 +54,13 @@ public class OrderUpdateService : BackgroundService
                 return;
             }
 
+            String nextState = null;
             foreach (var product in products)
             {
+                nextState = GetNextState(product.Estado);
 
                 if (product.Estado != "Pronto")
                 {
-                    var nextState = GetNextState(product.Estado);
-
                     if (connection.State != ConnectionState.Open)
                     {
                         await connection.OpenAsync(stoppingToken); 
@@ -79,8 +79,8 @@ public class OrderUpdateService : BackgroundService
                     );
                 }
             }
-
-            await Task.Delay(5000, stoppingToken);
+           
+            await Task.Delay(GetDelayForState(nextState), stoppingToken);
 
             if (products.All(p => p.Estado == "Pronto"))
             {
@@ -125,4 +125,23 @@ public class OrderUpdateService : BackgroundService
             _ => "Pronto"
         };
     }
+    private int GetDelayForState(string estadoAtual)
+    {
+        double delayInSec= estadoAtual switch
+        {
+            "Espera" => 0.1,
+            "Montar CPU" => 1, 
+            "Montar RAM" => 1, 
+            "Montar Disco" => 1,
+            "Montar Cooler" => 1, 
+            "Montar Motherboard" => 1,
+            "Montar GPU" => 1, 
+            "Montar Fonte de Alimentação" => 1, 
+            "Montar Caixa" => 1, 
+            _ => 1 
+        };
+
+        return (int)(delayInSec * 60 * 1000);
+    }
+
 }

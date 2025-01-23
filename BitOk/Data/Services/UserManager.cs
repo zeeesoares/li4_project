@@ -15,20 +15,26 @@ namespace BitOk.Data.Services
         {
             return BCrypt.Net.BCrypt.HashPassword(password);
         }
-        public Task CreateUser(string nome, string username, string password, string role)
+        public async Task CreateUser(string nome, string username, string password, string role)
         {
+            var existingUser = await GetUser(username);
+            if (existingUser != null)
+            {
+                throw new Exception("O username já está em uso.");
+            }
+
             var passwordHash = HashPassword(password);
 
             var queries = new Dictionary<string, dynamic>
-            {
-                {
-                    @"INSERT INTO dbo.Utilizador (Nome, Username, Password, Role) 
-                      VALUES (@Nome, @Username, @Password, @Role)",
-                    new { Nome = nome, Username = username, Password = passwordHash, Role = role }
-                }
-            };
+    {
+        {
+            @"INSERT INTO dbo.Utilizador (Nome, Username, Password, Role) 
+              VALUES (@Nome, @Username, @Password, @Role)",
+            new { Nome = nome, Username = username, Password = passwordHash, Role = role }
+        }
+    };
 
-            return _db.ExecuteTransaction(queries);
+            await _db.ExecuteTransaction(queries);
         }
 
         public Task<UserModel?> GetUser(string username)
