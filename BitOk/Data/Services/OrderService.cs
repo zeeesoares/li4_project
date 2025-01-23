@@ -269,7 +269,7 @@ namespace BitOk.Data.Services
                         p.idPeca, 
                         p.Nome, 
                         p.Stock, 
-                        (pd.Quantidade * de.Quantidade) AS QuantidadeNecessaria
+                        (pd.Quantidade * de.Quantidade_Prod) AS QuantidadeNecessaria
                     FROM Pecas_Desktop pd
                     JOIN Desktop_Encomendas de ON pd.Desktop_idDesktop = de.Desktop_idDesktop
                     JOIN Peca p ON pd.Peca_idPeca = p.idPeca

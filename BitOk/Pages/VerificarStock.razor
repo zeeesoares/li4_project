@@ -1,8 +1,12 @@
 ﻿@page "/verificarStock/encomenda{idEncomenda:int}"
 @inject IOrderService OrderService
 @inject IPecaService PecaService
+@inject NavigationManager NavigationManager
 
 <div class="p-6 bg-white">
+    <div class="flex justify-end mb-4">
+    </div>
+
     <div class="bg-gray-200 rounded-lg p-4 mt-6">
         <div class="grid grid-cols-3 gap-4 items-center mb-4">
             <span class="font-bold text-gray-600">Nome</span>
@@ -10,43 +14,30 @@
             <span></span>
         </div>
 
-        @if (Pecas?.Any() ?? false)
+        @foreach (var peca in PaginatedPecas)
         {
-            @foreach (var peca in PaginatedPecas)
-            {
-                <div class="grid grid-cols-3 gap-4 items-center bg-gray-300 rounded-lg shadow-sm p-4 mb-2">
-                    <span class="text-gray-800">@peca.Nome</span>
+            <div class="grid grid-cols-3 gap-4 items-center bg-gray-300 rounded-lg shadow-sm p-4 mb-2">
+                <span class="text-gray-800">@peca.Nome</span>
+                <input type="number" class="w-full border border-gray-300 rounded-lg px-2 py-1 text-center"
+                       value="@peca.Stock" readonly />
 
-                    <div class="flex justify-center">
-                        <input type="number" class="w-full max-w-[150px] border border-gray-300 rounded-lg px-2 py-1 text-center"
-                               value="@peca.Stock" readonly />
-                    </div>
-
-                    <div class="flex justify-end">
-                        <button class="w-full bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800" @onclick="() => OpenQuantityModal(peca)">
-                            Adicionar
-                        </button>
-                    </div>
-                </div>
-            }
-        }
-        else
-        {
-            <div class="text-gray-700 text-center mt-4">
-                <p>Não há peças com stock insuficiente nesta encomenda.</p>
+                <button class="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800 w-auto" @onclick="() => OpenQuantityModal(peca)">
+                    Adicionar
+                </button>
             </div>
         }
 
         <div class="flex justify-center mt-4 space-x-4">
-            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300"
-                    @onclick="GoToPreviousPage" disabled="@(!HasPreviousPage)">
-                &lt;- Previous
+            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 flex items-center space-x-2" @onclick="GoToPreviousPage" disabled="@(!HasPreviousPage)">
+                <span>&lt;-</span>
+                <span>Previous</span>
             </button>
-            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-300"
-                    @onclick="GoToNextPage" disabled="@(!HasNextPage)">
-                Next -&gt;
+            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 flex items-center space-x-2" @onclick="GoToNextPage" disabled="@(!HasNextPage)">
+                <span>Next</span>
+                <span>-></span>
             </button>
         </div>
+
     </div>
 
     @if (ShowQuantityModal)
@@ -55,16 +46,17 @@
             <div class="bg-white rounded-lg p-6 w-1/3">
                 <h2 class="text-lg font-bold text-center mb-4">Adicionar Quantidade</h2>
                 <div class="mb-4">
-                    <label class="block text-gray-700 font-bold mb-2">Quantidade</label>
-                    <input type="number" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-center"
-                           @bind="QuantityToAdd" />
+                    <div class="bg-gray-300 rounded-lg p-4">
+                        <label class="block text-gray-700 font-bold mb-2">Quantidade</label>
+                        <input type="number" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-center" @bind="QuantityToAdd" />
+                    </div>
                 </div>
 
                 <div class="flex justify-end space-x-4">
-                    <button class="w-full bg-gray-700 text-white px-6 py-2 rounded-lg hover:bg-gray-800" @onclick="AddQuantity">
+                    <button class="bg-gray-700 text-white px-6 py-2 rounded-lg hover:bg-gray-800" @onclick="AddQuantity">
                         Adicionar
                     </button>
-                    <button class="w-full bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400" @onclick="CloseQuantityModal">
+                    <button class="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400" @onclick="CloseQuantityModal">
                         Cancelar
                     </button>
                 </div>
@@ -132,6 +124,14 @@
             {
                 SelectedPeca.Stock += QuantityToAdd;
                 await PecaService.UpdateQuantidade(SelectedPeca);
+
+                Pecas = await OrderService.GetPecasWithoutStockAsync(idEncomenda);
+                if (Pecas.Count == 0)
+                {
+                    Encomenda!.Estado_idEstado = 2;   
+                    await OrderService.UpdateOrderAsync(Encomenda);
+					NavigateToMenu();
+                }
             }
             catch (Exception ex)
             {
@@ -140,5 +140,10 @@
         }
 
         CloseQuantityModal();
+    }
+
+    private void NavigateToMenu()
+    {
+        NavigationManager.NavigateTo("/encMenu");
     }
 }
