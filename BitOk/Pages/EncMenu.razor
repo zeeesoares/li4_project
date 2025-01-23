@@ -17,22 +17,22 @@
 
     <div class="flex space-x-4 border-b">
         <button class="py-2 px-4 text-sm font-bold relative"
-                style="@(ActiveTab == 1 ? "text-black" : "text-gray-500")"
-                @onclick="() => ChangeTab(1)">
+        style="@(ActiveTab == 1 ? "text-black" : "text-gray-500")"
+        @onclick="() => ChangeTab(1)">
             Em Espera
             <span class="absolute left-0 bottom-0 w-0 h-1 bg-black transition-all duration-300 @((ActiveTab == 1) ? "w-full" : "") hover:w-full"></span>
         </button>
 
         <button class="py-2 px-4 text-sm font-bold relative"
-                style="@(ActiveTab == 2 ? "text-black" : "text-gray-500")"
-                @onclick="() => ChangeTab(2)">
+        style="@(ActiveTab == 2 ? "text-black" : "text-gray-500")"
+        @onclick="() => ChangeTab(2)">
             Preparação
             <span class="absolute left-0 bottom-0 w-0 h-1 bg-black transition-all duration-300 @((ActiveTab == 2) ? "w-full" : "") hover:w-full"></span>
         </button>
 
         <button class="py-2 px-4 text-sm font-bold relative"
-                style="@(ActiveTab == 3 ? "text-black" : "text-gray-500")"
-                @onclick="() => ChangeTab(3)">
+        style="@(ActiveTab == 3 ? "text-black" : "text-gray-500")"
+        @onclick="() => ChangeTab(3)">
             Concluídas
             <span class="absolute left-0 bottom-0 w-0 h-1 bg-black transition-all duration-300 @((ActiveTab == 3) ? "w-full" : "") hover:w-full"></span>
         </button>
@@ -68,7 +68,7 @@
                         }
 
                         <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700"
-                                @onclick="() => NavigateToOrder(order.idEncomenda)">
+                        @onclick="() => NavigateToOrder(order.idEncomenda)">
                             Acompanhar Encomenda
                         </button>
                     </div>
@@ -109,7 +109,10 @@
 
         HubConnection.On<int, int>("ReceiveUpdate", async (orderId, newState) =>
         {
-            Snackbar.Add($"Encomenda #{orderId} atualizada para estado: {newState}", Severity.Info);
+            if (!IsAdmin)
+            {
+                Snackbar.Add($"Encomenda #{orderId} atualizada para estado: Pronto", Severity.Success);
+            }
             await LoadOrdersAsync();
             StateHasChanged();
         });

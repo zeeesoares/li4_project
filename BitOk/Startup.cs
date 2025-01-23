@@ -47,6 +47,7 @@ namespace BitOk
             services.AddTransient<IUserManager, UserManager>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IOrderServiceBackground, OrderServiceBackground>();
             services.AddTransient<IPecaService, PecaService>();
 
             services.AddHostedService<OrderUpdateService>();

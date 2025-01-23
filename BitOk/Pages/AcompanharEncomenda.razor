@@ -1,4 +1,7 @@
 ﻿@page "/acompanharEncomenda/encomenda{idEncomenda:int}"
+
+@using Microsoft.AspNetCore.SignalR.Client
+
 @inject IOrderService OrderService
 @inject AuthenticationStateProvider AuthProvider
 @inject NavigationManager NavigationManager
@@ -55,6 +58,7 @@
     private EncomendaModel? Encomenda { get; set; }
     private List<DesktopEncomendaModel> ProdutosEncomenda { get; set; } = new();
     private int Id { get; set; } = 0;
+    private HubConnection? HubConnection;
 
     protected override async Task OnInitializedAsync()
     {
@@ -67,6 +71,24 @@
 
             Encomenda.Utilizador_idUtilizador = Id;
             ProdutosEncomenda = await OrderService.GetDesktopEncomendaByOrderIdAsync(idEncomenda);
+
+            HubConnection = new HubConnectionBuilder()
+           .WithUrl(NavigationManager.ToAbsoluteUri("/myhub"))
+           .Build();
+
+            HubConnection.On<int, int>("ReceiveUpdate", async (orderId, newState) =>
+            {
+                Encomenda = await OrderService.GetOrderByIdAsync(idEncomenda);
+                StateHasChanged();
+            });
+
+            HubConnection.On<int, String>("ReceiveDesktopUpdate", async (desktopId, newState) =>
+            {
+                ProdutosEncomenda = await OrderService.GetDesktopEncomendaByOrderIdAsync(idEncomenda);
+                StateHasChanged();
+            });
+
+            await HubConnection.StartAsync();
         }
     }
 
@@ -74,5 +96,13 @@
     private void NavigateToProduct(int desktopId)
     {
         NavigationManager.NavigateTo($"/acompanharEncomenda/encomenda{idEncomenda}/desktop{desktopId}");
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (HubConnection is not null)
+        {
+            await HubConnection.DisposeAsync();
+        }
     }
 }
