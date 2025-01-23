@@ -284,5 +284,30 @@ namespace BitOk.Data.Services
             var result = await _sqlDataAccess.LoadData<PecaModel, object>(query, parameters);
             return result;
         }
+
+        public async Task UpdateStockAsync(int orderId)
+        {
+            string queryPecasDesktop = @"
+                SELECT pd.Peca_idPeca, pd.Quantidade
+                FROM Pecas_Desktop pd
+                INNER JOIN Desktop_Encomendas de ON pd.Desktop_idDesktop = de.Desktop_idDesktop
+                WHERE de.Encomenda_idEncomenda = @OrderId";
+
+            var pecasDesktop = await _sqlDataAccess.LoadData<(int PecaId, int Quantidade), object>(
+                queryPecasDesktop,
+                new { OrderId = orderId });
+
+            foreach (var item in pecasDesktop)
+            {
+                string queryUpdateStock = @"
+                    UPDATE Peca
+                    SET Stock = Stock - @Quantidade
+                    WHERE idPeca = @PecaId";
+
+                await _sqlDataAccess.SaveData(
+                    queryUpdateStock,
+                    new { PecaId = item.PecaId, Quantidade = item.Quantidade });
+            }
+        }
     }
 }

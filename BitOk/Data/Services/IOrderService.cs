@@ -15,7 +15,7 @@ namespace BitOk.Data.Services
         Task<List<DesktopEncomendaModel>> GetDesktopEncomendaByOrderIdAsync(int orderId);
         Task<DesktopEncomendaModel> GetDesktopEncomendaByIdAsync(int desktopId, int encomendaId);
         Task<bool> UpdateProductStateAsync(int encomendaId, int desktopId, string novoEstado);
-
         Task<List<PecaModel>> GetPecasWithoutStockAsync(int encomendaId);
+        Task UpdateStockAsync(int orderId);
     }
 }
