@@ -130,6 +130,7 @@
                 {
                     Encomenda!.Estado_idEstado = 2;   
                     await OrderService.UpdateOrderAsync(Encomenda);
+					await OrderService.UpdateStockAsync(idEncomenda);
 					NavigateToMenu();
                 }
             }
