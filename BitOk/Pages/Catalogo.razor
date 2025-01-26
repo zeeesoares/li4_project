@@ -46,7 +46,20 @@
         </div>
         <div class="w-full lg:w-3/4">
             <div class="flex justify-between items-center mb-6">
-                <h4 class="text-xl font-semibold">Produtos</h4>
+                <h4 class="text-xl font-semibold mr-4">Produtos</h4>
+
+                <div class="flex w-full max-w-lg items-center space-x-2">
+                    <input type="text"
+                           class="px-4 py-2 border rounded-md"
+                           placeholder="Pesquisar por descrição..."
+                           @bind="searchTerm"
+                           @oninput="ApplyFilters" />
+
+                    <button @onclick="ApplyFilters" class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300">
+                        Pesquisar
+                    </button>
+                </div>
+
                 <div class="flex space-x-2">
                     <button @onclick="OrderByPriceAscending" class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300">Preço ↑</button>
                     <button @onclick="OrderByPriceDescending" class="px-4 py-2 bg-gray-200 rounded-md hover:bg-gray-300">Preço ↓</button>
@@ -88,6 +101,7 @@
     private List<string> selectedProcessors = new List<string>();
     private List<string> selectedGpus = new List<string>();
     private decimal maxPrice = 5000;
+    private string searchTerm = string.Empty;
 
     private bool isAuthenticated;
     private bool isAdmin = false;
@@ -137,6 +151,7 @@
             isLoading = false;
         }
     }
+
     private void ToggleCategoryFilter(string category, object isChecked)
     {
         if ((bool)isChecked)
@@ -147,10 +162,13 @@
 
     private void ApplyFilters()
     {
-        filteredProducts = products.Where(p =>
-            (selectedCategories.Count == 0 || selectedCategories.Contains(p.Categoria)) &&
-            p.Preco <= maxPrice
-        ).ToList();
+        filteredProducts = products
+            .Where(p =>
+                (selectedCategories.Count == 0 || selectedCategories.Contains(p.Categoria)) &&
+                p.Preco <= maxPrice &&
+                (string.IsNullOrEmpty(searchTerm) || p.Descricao.Contains(searchTerm, StringComparison.OrdinalIgnoreCase))
+            )
+            .ToList();
     }
 
     private void OrderByPriceAscending()

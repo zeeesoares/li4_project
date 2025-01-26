@@ -1,8 +1,14 @@
 ﻿@page "/nova-encomenda"
+
+@using Microsoft.AspNetCore.SignalR;
+@using BitOk.Hubs;
+
 @inject IOrderService OrderService
 @inject IProductService ProductService
 @inject AuthenticationStateProvider AuthProvider
 @inject ISnackbar Snackbar
+@inject IPecaService PecaService
+@inject IHubContext<MyHub> _hubContext;
 
 <div class="flex justify-center items-center mt-4">
     <div class="text-center">
@@ -28,7 +34,7 @@
             <div class="flex items-center gap-4">
                 <label class="text-sm font-medium">Quantidade</label>
                 <select class="bg-white border rounded-md p-2"
-                        @bind="item.Quantidade_Prod">
+                @bind="item.Quantidade_Prod">
                     @for (int i = 1; i <= 100; i++)
                     {
                         <option value="@i">@i</option>
@@ -37,7 +43,7 @@
             </div>
             <div>
                 <button class="bg-gray-800 rounded-full p-4 flex items-center justify-center hover:bg-gray-400 text-white"
-                        @onclick="@(() => RemoveProduct(item))">
+                @onclick="@(() => RemoveProduct(item))">
                     🗑
                 </button>
             </div>
@@ -45,12 +51,12 @@
     }
 
     <button class="bg-gray-300 rounded-full p-4 flex items-center justify-center hover:bg-gray-400"
-            @onclick="AddNewProduct">
+    @onclick="AddNewProduct">
         +
     </button>
 
     <button class="bg-gray-800 text-white px-6 py-3 rounded-md hover:bg-gray-700 mt-4"
-            @onclick="SubmitOrder">
+    @onclick="SubmitOrder">
         Realizar Encomenda
     </button>
 </div>
@@ -89,20 +95,29 @@
         {
             if (SelectedProducts.Any())
             {
-                var newOrder = new EncomendaModel
-                    {
-                        Data_Inicio = DateTime.UtcNow,
-                        Estado_idEstado = 1,
-                        Utilizador_idUtilizador = await GetCurrentUserId(),
-                    };
-
                 var products = SelectedProducts.Select(product => new DesktopEncomendaModel
                     {
                         Desktop_idDesktop = product.Desktop_idDesktop,
                         Quantidade_Prod = product.Quantidade_Prod
                     }).ToList();
 
+                bool isStockAvailable = await PecaService.CheckStockForProductsAsync(products);
+
+                int orderState = isStockAvailable ? 2 : 1;
+
+                var newOrder = new EncomendaModel
+                    {
+                        Data_Inicio = DateTime.UtcNow,
+                        Estado_idEstado = orderState,
+                        Utilizador_idUtilizador = await GetCurrentUserId(),
+                    };
+
                 await OrderService.CreateOrderAsync(newOrder, products);
+
+                await _hubContext.Clients.All.SendAsync(
+                       "NewOrderUpdate",
+                       newOrder.idEncomenda
+               );
 
                 Snackbar.Add("Encomenda realizada com sucesso!", Severity.Success);
 

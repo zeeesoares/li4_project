@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 
 using BitOk.Data;
 using BitOk.Auth;
+using BitOk.Hubs;
 using BitOk.Data.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor.Services;
@@ -46,7 +47,12 @@ namespace BitOk
             services.AddTransient<IUserManager, UserManager>();
             services.AddTransient<IProductService, ProductService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IOrderServiceBackground, OrderServiceBackground>();
             services.AddTransient<IPecaService, PecaService>();
+
+            services.AddHostedService<OrderUpdateService>();
+
+            services.AddSignalR();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -70,6 +76,8 @@ namespace BitOk
             {
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
+
+                endpoints.MapHub<MyHub>("/myhub");
             });
         }
     }

@@ -27,8 +27,12 @@
         </div>
 
         <div class="w-full bg-gray-300 p-4 rounded-lg shadow-md">
-            <label class="block text-sm font-bold text-black">Imagem (URL):</label>
-            <input type="text" @bind="imagemUrl" class="w-full mt-2 px-4 py-2 border border-gray-500 rounded-md bg-gray-300 text-black focus:ring focus:ring-indigo-500" />
+            <label class="block text-sm font-bold text-black">Imagem (Carregar Ficheiro):</label>
+            <InputFile OnChange="HandleFileUpload" class="w-full mt-2 px-4 py-2 border border-gray-500 rounded-md bg-gray-300 text-black focus:ring focus:ring-indigo-500" />
+            @if (!string.IsNullOrEmpty(imagemUrl))
+            {
+                <p class="text-sm mt-2 text-gray-700">Imagem carregada: @imagemUrl</p>
+            }
         </div>
     </div>
 
@@ -45,11 +49,11 @@
 
     <div class="w-full bg-gray-300 p-4 mt-4 rounded-lg shadow-md">
         <label class="block text-sm font-bold text-black">Preço (€):</label>
-        <input type="number" @bind="preco" class="w-full mt-2 px-4 py-2 border border-gray-500 rounded-md bg-gray-300 black focus:ring focus:ring-indigo-500" />
+        <input type="number" @bind="preco" class="w-full mt-2 px-4 py-2 border border-gray-500 rounded-md bg-gray-300 text-black focus:ring focus:ring-indigo-500" />
     </div>
 
     <div class="mt-8 text-center flex justify-center gap-4">
-        <button class="px-6 py-2 bg-gray-800 text-white font-bold rounded-md hover:bg-gray-700" @onclick="CriarProdutoDB">
+        <button class="px-6 py-2 bg-gray-800 text-white font-bold rounded-md hover:bg-gray-700" @onclick="() => CriarProdutoDB()">
             Criar Produto
         </button>
 
@@ -65,7 +69,7 @@
     private string descricao = string.Empty;
     private string imagemUrl = string.Empty;
     private decimal preco;
-    private string categoria = string.Empty; 
+    private string categoria = string.Empty;
     private List<string> categories = new List<string> { "Gaming", "Office", "Liquid" };
 
     protected override async Task OnInitializedAsync()
@@ -89,6 +93,29 @@
         }
     }
 
+    private async Task HandleFileUpload(InputFileChangeEventArgs e)
+    {
+        try
+        {
+            var file = e.File;
+
+            // Usar o nome original do arquivo para salvar
+            var fileName = file.Name;
+            var path = Path.Combine("wwwroot/assets/imagens", fileName);
+
+            // Salvar o arquivo na pasta
+            using var fileStream = new FileStream(path, FileMode.Create);
+            await file.OpenReadStream().CopyToAsync(fileStream);
+
+            // Atualizar imagemUrl com o caminho relativo
+            imagemUrl = $"assets/imagens/{fileName}";
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Erro ao carregar a imagem: {ex.Message}");
+        }
+    }
+
     private async Task CriarProdutoDB()
     {
         try
@@ -105,7 +132,7 @@
                     Imagem_Url = imagemUrl,
                     Preco = preco,
                     Categoria = categoria,
-                    Catalogo_idCatalogo = 1 
+                    Catalogo_idCatalogo = 1
                 };
 
             await ProductService.AddProduct(novoProduto, selecionadas);

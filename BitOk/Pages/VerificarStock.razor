@@ -1,0 +1,150 @@
+﻿@page "/verificarStock/encomenda{idEncomenda:int}"
+@inject IOrderService OrderService
+@inject IPecaService PecaService
+@inject NavigationManager NavigationManager
+
+<div class="p-6 bg-white">
+    <div class="flex justify-end mb-4">
+    </div>
+
+    <div class="bg-gray-200 rounded-lg p-4 mt-6">
+        <div class="grid grid-cols-3 gap-4 items-center mb-4">
+            <span class="font-bold text-gray-600">Nome</span>
+            <span class="font-bold text-gray-600 text-center">Quantidade</span>
+            <span></span>
+        </div>
+
+        @foreach (var peca in PaginatedPecas)
+        {
+            <div class="grid grid-cols-3 gap-4 items-center bg-gray-300 rounded-lg shadow-sm p-4 mb-2">
+                <span class="text-gray-800">@peca.Nome</span>
+                <input type="number" class="w-full border border-gray-300 rounded-lg px-2 py-1 text-center"
+                       value="@peca.Stock" readonly />
+
+                <button class="bg-gray-700 text-white px-4 py-2 rounded-lg hover:bg-gray-800 w-auto" @onclick="() => OpenQuantityModal(peca)">
+                    Adicionar
+                </button>
+            </div>
+        }
+
+        <div class="flex justify-center mt-4 space-x-4">
+            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 flex items-center space-x-2" @onclick="GoToPreviousPage" disabled="@(!HasPreviousPage)">
+                <span>&lt;-</span>
+                <span>Previous</span>
+            </button>
+            <button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-200 flex items-center space-x-2" @onclick="GoToNextPage" disabled="@(!HasNextPage)">
+                <span>Next</span>
+                <span>-></span>
+            </button>
+        </div>
+
+    </div>
+
+    @if (ShowQuantityModal)
+    {
+        <div class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+            <div class="bg-white rounded-lg p-6 w-1/3">
+                <h2 class="text-lg font-bold text-center mb-4">Adicionar Quantidade</h2>
+                <div class="mb-4">
+                    <div class="bg-gray-300 rounded-lg p-4">
+                        <label class="block text-gray-700 font-bold mb-2">Quantidade</label>
+                        <input type="number" class="w-full border border-gray-300 rounded-lg px-3 py-2 text-center" @bind="QuantityToAdd" />
+                    </div>
+                </div>
+
+                <div class="flex justify-end space-x-4">
+                    <button class="bg-gray-700 text-white px-6 py-2 rounded-lg hover:bg-gray-800" @onclick="AddQuantity">
+                        Adicionar
+                    </button>
+                    <button class="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg hover:bg-gray-400" @onclick="CloseQuantityModal">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@code {
+    [Parameter] public int idEncomenda { get; set; }
+    private EncomendaModel? Encomenda { get; set; }
+    private List<PecaModel> Pecas = new();
+    private PecaModel? SelectedPeca;
+    private int QuantityToAdd = 0;
+    private bool ShowQuantityModal = false;
+
+    private int currentPage = 1;
+    private int itemsPerPage = 5;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Encomenda = await OrderService.GetOrderByIdAsync(idEncomenda);
+        Pecas = await OrderService.GetPecasWithoutStockAsync(idEncomenda);
+    }
+
+    private List<PecaModel> PaginatedPecas => Pecas.Skip((currentPage - 1) * itemsPerPage).Take(itemsPerPage).ToList();
+
+    private bool HasNextPage => currentPage * itemsPerPage < Pecas.Count;
+    private bool HasPreviousPage => currentPage > 1;
+
+    private void GoToPreviousPage()
+    {
+        if (HasPreviousPage)
+        {
+            currentPage--;
+        }
+    }
+
+    private void GoToNextPage()
+    {
+        if (HasNextPage)
+        {
+            currentPage++;
+        }
+    }
+
+    private void OpenQuantityModal(PecaModel peca)
+    {
+        SelectedPeca = peca;
+        QuantityToAdd = 0;
+        ShowQuantityModal = true;
+    }
+
+    private void CloseQuantityModal()
+    {
+        ShowQuantityModal = false;
+    }
+
+    private async Task AddQuantity()
+    {
+        if (SelectedPeca != null)
+        {
+            try
+            {
+                SelectedPeca.Stock += QuantityToAdd;
+                await PecaService.UpdateQuantidade(SelectedPeca);
+
+                Pecas = await OrderService.GetPecasWithoutStockAsync(idEncomenda);
+                if (Pecas.Count == 0)
+                {
+                    Encomenda!.Estado_idEstado = 2;   
+                    await OrderService.UpdateOrderAsync(Encomenda);
+					await OrderService.UpdateStockAsync(idEncomenda);
+					NavigateToMenu();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro ao atualizar a quantidade: {ex.Message}");
+            }
+        }
+
+        CloseQuantityModal();
+    }
+
+    private void NavigateToMenu()
+    {
+        NavigationManager.NavigateTo("/encMenu");
+    }
+}

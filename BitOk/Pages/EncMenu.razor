@@ -1,4 +1,7 @@
 ﻿@page "/encMenu"
+
+@using Microsoft.AspNetCore.SignalR.Client
+
 @inject IOrderService OrderService
 @inject AuthenticationStateProvider AuthProvider
 @inject ISnackbar Snackbar
@@ -14,22 +17,22 @@
 
     <div class="flex space-x-4 border-b">
         <button class="py-2 px-4 text-sm font-bold relative"
-                style="@(ActiveTab == 1 ? "text-black" : "text-gray-500")"
-                @onclick="() => ChangeTab(1)">
+        style="@(ActiveTab == 1 ? "text-black" : "text-gray-500")"
+        @onclick="() => ChangeTab(1)">
             Em Espera
             <span class="absolute left-0 bottom-0 w-0 h-1 bg-black transition-all duration-300 @((ActiveTab == 1) ? "w-full" : "") hover:w-full"></span>
         </button>
 
         <button class="py-2 px-4 text-sm font-bold relative"
-                style="@(ActiveTab == 2 ? "text-black" : "text-gray-500")"
-                @onclick="() => ChangeTab(2)">
+        style="@(ActiveTab == 2 ? "text-black" : "text-gray-500")"
+        @onclick="() => ChangeTab(2)">
             Preparação
             <span class="absolute left-0 bottom-0 w-0 h-1 bg-black transition-all duration-300 @((ActiveTab == 2) ? "w-full" : "") hover:w-full"></span>
         </button>
 
         <button class="py-2 px-4 text-sm font-bold relative"
-                style="@(ActiveTab == 3 ? "text-black" : "text-gray-500")"
-                @onclick="() => ChangeTab(3)">
+        style="@(ActiveTab == 3 ? "text-black" : "text-gray-500")"
+        @onclick="() => ChangeTab(3)">
             Concluídas
             <span class="absolute left-0 bottom-0 w-0 h-1 bg-black transition-all duration-300 @((ActiveTab == 3) ? "w-full" : "") hover:w-full"></span>
         </button>
@@ -46,14 +49,30 @@
                         <div class="flex items-center gap-2 mt-2">
                             <span class="w-4 h-4 rounded-full" style="background-color: @GetStatusColor(order.Estado_idEstado)"></span>
                         </div>
-                        <p class="mt-2 text-base font-bold text-black">Iniciada em: @order.Data_Inicio</p>
+
+                        @if (ActiveTab == 3)
+                        {
+                            <p class="mt-2 text-base font-bold text-black">Iniciada em: @order.Data_Inicio</p>
+                            <p class="mt-1 text-base font-bold text-black">Terminada em: @order.Data_Fim</p>
+                        }
+                        else
+                        {
+                            <p class="mt-2 text-base font-bold text-black">Iniciada em: @order.Data_Inicio</p>
+                        }
                     </div>
 
                     <div class="flex items-center gap-4">
-                        @if (!IsUserAdmin())
+                        @if (!IsUserAdmin() && order.Estado_idEstado == 1)
                         {
                             <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700" @onclick="() => DeleteOrder(order.idEncomenda)">
                                 Cancelar Encomenda
+                            </button>
+                        }
+
+                        @if (IsUserAdmin() && order.Estado_idEstado == 1)
+                        {
+                            <button class="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700" @onclick="() => NavigateToVerifyStock(order.idEncomenda)">
+                                Verificar e Recolher Stock
                             </button>
                         }
 
@@ -69,7 +88,6 @@
                 <p>Erro ao carregar a encomenda: @ex.Message</p>
             }
         }
-
     </div>
 </div>
 
@@ -79,6 +97,7 @@
     private List<EncomendaModel> PreparationOrders = new List<EncomendaModel>();
     private List<EncomendaModel> CompletedOrders = new List<EncomendaModel>();
     private int Id { get; set; } = 0;
+    private HubConnection? HubConnection;
 
     private bool IsAdmin { get; set; } = false;
 
@@ -91,6 +110,28 @@
         IsAdmin = role == "Admin";
 
         await LoadOrdersAsync();
+
+        HubConnection = new HubConnectionBuilder()
+            .WithUrl(NavigationManager.ToAbsoluteUri("/myhub"))
+            .Build();
+
+        HubConnection.On<int, int>("ReceiveUpdate", async (orderId, newState) =>
+        {
+            if (!IsAdmin)
+            {
+                Snackbar.Add($"Encomenda #{orderId} atualizada para estado: Pronto", Severity.Success);
+            }
+            await LoadOrdersAsync();
+            StateHasChanged();
+        });
+
+        HubConnection.On<int>("NewOrderUpdate", async (orderId) =>
+        {
+            await LoadOrdersAsync();
+            StateHasChanged();
+        });
+
+        await HubConnection.StartAsync();
     }
 
     private async Task LoadOrdersAsync()
@@ -110,7 +151,8 @@
             PreparationOrders = await OrderService.GetOrdersByStatusAsyncAdmin(2);
             CompletedOrders = await OrderService.GetOrdersByStatusAsyncAdmin(3);
         }
-        else  {
+        else
+        {
             PendingOrders = await OrderService.GetOrdersByStatusAsync(1, Id);
             PreparationOrders = await OrderService.GetOrdersByStatusAsync(2, Id);
             CompletedOrders = await OrderService.GetOrdersByStatusAsync(3, Id);
@@ -160,6 +202,19 @@
 
     private void NavigateToOrder(int orderId)
     {
-        NavigationManager.NavigateTo($"/acompanharEncomenda/{orderId}");
+        NavigationManager.NavigateTo($"/acompanharEncomenda/encomenda{orderId}");
+    }
+
+    private void NavigateToVerifyStock(int orderId)
+    {
+        NavigationManager.NavigateTo($"/verificarStock/encomenda{orderId}");
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (HubConnection is not null)
+        {
+            await HubConnection.DisposeAsync();
+        }
     }
 }

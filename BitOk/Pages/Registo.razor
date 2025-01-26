@@ -56,9 +56,9 @@
     private class RegisterModel
     {
         [Required(ErrorMessage = "O campo nome é obrigatório")]
-        public string Nome { get; set; } 
+        public string Nome { get; set; }
         [Required(ErrorMessage = "O campo username é obrigatório")]
-        public string Username { get; set; } 
+        public string Username { get; set; }
         [Required(ErrorMessage = "O campo password é obrigatório"), MinLength(8, ErrorMessage = "A password deve ter no mínimo 8 caracteres")]
         public string Password { get; set; }
 
@@ -83,12 +83,41 @@
     {
         _registerFormContext = new EditContext(_registerModel);
         _registerFormValidationMessageStore = new ValidationMessageStore(_registerFormContext);
+
+        _registerFormContext.OnFieldChanged += ClearValidationMessagesOnFieldChange;
+    }
+
+    private void ClearValidationMessagesOnFieldChange(object? sender, FieldChangedEventArgs e)
+    {
+        if (e.FieldIdentifier.Model == _registerModel && e.FieldIdentifier.FieldName == nameof(_registerModel.Username))
+        {
+            _registerFormValidationMessageStore?.Clear(e.FieldIdentifier);
+            _registerFormContext?.NotifyValidationStateChanged();
+        }
     }
 
     private async Task RegisterUser()
     {
+        var existingUser = await _db.GetUser(_registerModel.Username);
+
+        if (existingUser != null)
+        {
+            var usernameField = new FieldIdentifier(_registerModel, nameof(_registerModel.Username));
+            _registerFormValidationMessageStore?.Add(usernameField,
+                new[] { "O username já está em uso. Escolha outro." });
+            _registerFormContext.NotifyValidationStateChanged();
+            return;
+        }
+
         await _db.CreateUser(_registerModel.Nome, _registerModel.Username, _registerModel.Password, "client");
         NavManager.NavigateTo("/login", true);
     }
-}
 
+    public void Dispose()
+    {
+        if (_registerFormContext != null)
+        {
+            _registerFormContext.OnFieldChanged -= ClearValidationMessagesOnFieldChange;
+        }
+    }
+}
