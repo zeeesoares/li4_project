@@ -19,19 +19,18 @@ else
     int adjustedStepIndex = nonWaitingSteps.IndexOf(Steps[CurrentStepIndex]) + 1;
 
     <div class="max-w-4xl mx-auto">
-        <div class="bg-gray-300 p-4 rounded-lg">
-            <div class="flex justify-between items-center">
-                <div class="text-left w-1/3">
-                    <span class="text-lg font-semibold">Peça: @CurrentProduct.GetCurrentPieceName()</span>
-                </div>
-                <div class="text-center w-1/3">
-                    <span class="text-lg font-semibold">Passo número @adjustedStepIndex</span>
-                </div>
-                <div class="text-right w-1/3">
-                    <span class="text-lg font-semibold">Estado: @CurrentProduct.Estado</span>
-                </div>
+        <div class="flex bg-gray-300 justify-between p-4 rounded-lg items-center">
+            <div class="text-left w-1/3">
+                <span class="text-lg font-semibold">Peça: @CurrentProduct.GetCurrentPieceName()</span>
+            </div>
+            <div class="text-center w-1/3">
+                <span class="text-lg font-semibold">Passo número @adjustedStepIndex</span>
+            </div>
+            <div class="text-right w-1/2">
+                <span class="text-lg font-semibold">Estado: @CurrentProduct.Estado</span>
             </div>
         </div>
+
 
         <div class="mt-12">
             <div class="relative h-2 bg-gray-200 rounded-full w-3/4 mx-auto">
@@ -40,7 +39,9 @@ else
         </div>
 
         <div class="mt-12 flex justify-between items-center">
-            <button class="px-2 py-2 text-gray-700 hover:text-gray-900" @onclick="PreviousStep" disabled="@(CurrentStepIndex == 0)">
+            <button class="px-4 py-2 text-white bg-gray-800 hover:bg-gray-700 border border-gray-300 rounded-lg"
+                    @onclick="PreviousStep"
+                    disabled="@(CurrentStepIndex == 0)">
                 &#8592; Previous
             </button>
 
@@ -50,10 +51,14 @@ else
                      class="w-96 h-auto object-contain border-4 border-gray-800 rounded-lg" />
             </div>
 
-            <button class="px-2 py-2 text-gray-700 hover:text-gray-900" @onclick="NextStep" disabled="@(CurrentStepIndex == Steps.Count - 1)">
+            <button class="px-4 py-2 text-white bg-gray-800 hover:bg-gray-700 border border-gray-300 rounded-lg"
+                    @onclick="NextStep"
+                    disabled="@(CurrentStepIndex == Steps.Count - 1)">
                 Next &#8594;
             </button>
         </div>
+
+
 
         <div class="flex justify-center mt-12">
             <div class="flex space-x-1">
