@@ -130,18 +130,18 @@ public class OrderUpdateService : BackgroundService
         double delayInSec= estadoAtual switch
         {
             "Espera" => 0.1,
-            "Montar CPU" => 1, 
-            "Montar RAM" => 1, 
-            "Montar Disco" => 1,
-            "Montar Cooler" => 1, 
-            "Montar Motherboard" => 1,
-            "Montar GPU" => 1, 
-            "Montar Fonte de Alimentação" => 1, 
-            "Montar Caixa" => 1, 
+            "Montar CPU" => 5, 
+            "Montar RAM" => 5, 
+            "Montar Disco" => 3,
+            "Montar Cooler" => 7, 
+            "Montar Motherboard" => 3,
+            "Montar GPU" => 5, 
+            "Montar Fonte de Alimentação" => 7, 
+            "Montar Caixa" => 3, 
             _ => 1 
         };
 
-        return (int)(delayInSec * 60 * 1000);
+        return (int)(delayInSec * 1000);
     }
 
 }
