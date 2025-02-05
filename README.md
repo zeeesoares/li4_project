@@ -1,6 +1,6 @@
 # BitOK - Desktop Assembly
 
-![BitOK Logo](BitOk/wwwroot/assets/logo.png)  
+![BitOK Logo](BitOk/wwwroot/assets/readmeimg.png)  
 
 ## 📌 About the Project
 
